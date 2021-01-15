@@ -3,7 +3,9 @@ ft_printf project for 42
 
 
 FT_PRNTF 
-ОБЯЗАТЕЛЬНО ПРОЧЕСТЬ: https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html https://en.wikipedia.org/wiki/Printf_format_string
+ОБЯЗАТЕЛЬНО ПРОЧЕСТЬ:
+https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html
+https://en.wikipedia.org/wiki/Printf_format_string
 https://ru.wikipedia.org/wiki/Printf
 man printf
 
