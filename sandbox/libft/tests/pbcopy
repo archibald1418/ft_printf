@@ -1,0 +1,31 @@
+void	ft_fill_list_back(t_list **phead, size_t len, char **contents)
+{
+	size_t i = 0;
+	t_list *node;
+	while (i < len)
+	{
+		node = ft_lstnew(contents[i], ft_strsize(contents[i]));
+		ft_lstappend_back(phead, node);
+		i++;
+	}
+}
+
+t_list	*ft_lstfind_node(t_list **head, char *content) // TODO: ft_lstcmp && ft_nodecmp!
+{
+	t_list *tmp;
+
+	tmp = *head;
+	while (tmp)
+	{
+		if (ft_memcmp(tmp->next->content, content, ft_strlen(content)) == 0)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (tmp);
+}
+
+
+
+// TODO: Function that writes to front or to back on condition
+// void	ft_fill_list_both(t_lst)
+
