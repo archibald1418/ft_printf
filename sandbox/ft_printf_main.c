@@ -4,5 +4,5 @@
 // test commit
 int main()
 {
-	printf("This is a string %05.7s\n", "'string'");
+	// ft_putendl_fd("string", 1);
 }
