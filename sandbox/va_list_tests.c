@@ -6,7 +6,7 @@ void put_strarg(char *str, ...)
 
 	va_start(args, str);
 
-	printf("putstr returned -> %d", ft_putstr_fd_(va_arg(args, char *), 1));
+	printf("putstr returned -> %d", ft_putstr_fd_(va_arg(args, char ), 1));
 
 	va_end(args);
 }
@@ -14,4 +14,11 @@ void put_strarg(char *str, ...)
 int main()
 {
 	put_strarg("abc", "**********");
+
+	// "%d" -> ultoa
+	// "%s" -> putstr
+	// "%i" -> ultoa
+	// "%X" -> ultoa
+	// "%x" -> ultoa
+	// "%p" -> ultoa
 }
