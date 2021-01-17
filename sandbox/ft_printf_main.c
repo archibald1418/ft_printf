@@ -1,8 +1,8 @@
 #include "./ft_printf.h"
-
+#include "tests.h"
 
 // test commit
 int main()
 {
-	// ft_putendl_fd("string", 1);
+	printf("%s", ft_ultoa_base(-487659)); 
 }

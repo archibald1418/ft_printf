@@ -1,12 +1,12 @@
 #include "ft_printf.h"
 
-void put_strarg(char *str, ...)
+void put_strarg(int f, ...)
 {
 	va_list args;
 
-	va_start(args, str);
+	va_start(args, f);
 
-	printf("putstr returned -> %d", ft_putstr_fd_(va_arg(args, char ), 1));
+	printf("putstr returned -> %d", ft_putstr_fd_(va_arg(args, int ), 1));
 
 	va_end(args);
 }
