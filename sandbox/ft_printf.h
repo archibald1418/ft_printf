@@ -7,4 +7,4 @@ int				ft_putchar_fd_(char c, int fd);
 int				ft_putstr_fd_(char *s, int fd);
 
 // unsigned long to ascii
-char				*ft_ultoa_base(unsigned long n, int base);
+char				*ft_ultoa_base(unsigned long n, int base, size_t caps);
