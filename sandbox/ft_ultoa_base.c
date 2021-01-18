@@ -1,6 +1,6 @@
 #include "libft.h"
 
-#define ABS(x)	(x >= 0) ? x : (x * (-1))
+#define ALPHABET "0123456789abcdef"
 
 static void			fill_digits(unsigned long n, char *str, int base)
 {
@@ -10,8 +10,7 @@ static void			fill_digits(unsigned long n, char *str, int base)
 		fill_digits(n % base, str, base);
 	}
 	else
-		*str = '0' + ('a' - '0') * (n >= base) + ABS(n - base);
-
+		*str = ALPHABET[n];
 }
 
 static size_t		count_digits(unsigned long n, size_t i, int base)
@@ -25,12 +24,12 @@ static size_t		count_digits(unsigned long n, size_t i, int base)
 
 char				*ft_ultoa_base(unsigned long n, int base) // original printf overflows because of such exact typing
 {
-	char			*out;
+	// char			*out;
 	size_t			ndigits;
+	char			*out;
 
 	ndigits = count_digits(n, 0, base);
 	out = ft_calloc(ndigits + 1, 1);
-	if (out != NULL)
-		fill_digits(n, out + ndigits - 1, base);
-	return (out);
+	fill_digits(n, (char *)out + ndigits - 1, base);
+	return ((char *)out);
 }

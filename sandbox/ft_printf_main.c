@@ -4,5 +4,5 @@
 // test commit
 int main()
 {
-	printf("%06s", "djf");
+	printf("%s", ft_ultoa_base(1547487, 16));
 }
