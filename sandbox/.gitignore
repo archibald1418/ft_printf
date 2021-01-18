@@ -1,3 +1,4 @@
 a.out
 *dSYM/
-*.gch
+*.gcha.out*.h.gch
+*.o
