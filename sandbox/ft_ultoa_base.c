@@ -2,7 +2,7 @@
 
 #define ALPHABET "0123456789abcdef"
 
-static void			fill_digits(unsigned long n, char *str, int base)
+static void			fill_digits(unsigned long n, char *str, int base) 
 {
 	if (n >= base)
 	{
@@ -10,7 +10,7 @@ static void			fill_digits(unsigned long n, char *str, int base)
 		fill_digits(n % base, str, base);
 	}
 	else
-		*str = ALPHABET[n];
+		*str = ALPHABET[n]; // TODO: hex caps
 }
 
 static size_t		count_digits(unsigned long n, size_t i, int base)
