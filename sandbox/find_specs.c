@@ -7,7 +7,7 @@ static char	*ft_alphchr(char *pfmt)
 	while ((!ft_isalpha(*pfmt) && *pfmt != '%') && \
 	(*pfmt != '\0' || !IS_SPACE(*pfmt)))
 		pfmt++;
-	if (pfmt == '\0')
+	if (*pfmt == '\0' || IS_SPACE(*pfmt))
 		return (NULL);
 	return (pfmt);
 }
