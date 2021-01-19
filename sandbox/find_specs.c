@@ -1,8 +1,11 @@
 #include "ft_printf.h"
+#define IS_SPACE(c) ((c) == 32 || (9 <= (c) && (c) <= 13))
+
 
 static char	*ft_alphchr(char *pfmt)
 {
-	while (!ft_isalpha(*pfmt) && *pfmt != '%' && *pfmt != '\0')
+	while ((!ft_isalpha(*pfmt) && *pfmt != '%') && \
+	(*pfmt != '\0' || !IS_SPACE(*pfmt)))
 		pfmt++;
 	if (pfmt == '\0')
 		return (NULL);
@@ -34,7 +37,7 @@ int main()
 	int out;
 	char *fmt;
 
-	char *fmt1 = "<some junk> %12345h <more junk>";
+	char *fmt1 = "<some junk> %% <more junk>";
 	char *fmt2 = "8479vbfhlajbflk.jz blkzjbdk.a   %%%%%%% c asdjhflajk %%";
 
 	fmt = fmt2;

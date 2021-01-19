@@ -11,7 +11,7 @@ static void			fill_digits(unsigned long n, char *str, int base, size_t caps)
 		fill_digits(n % base, str, base, caps);
 	}
 	else
-		*str = ALPHABET[n] - caps * IS_LOWER(ALPHABET[n]) * 32;
+		*str = ALPHABET[n] - caps * IS_LOWER(ALPHABET[n]) * 32; 
 }
 
 static size_t		count_digits(unsigned long n, size_t i, int base)
@@ -30,7 +30,7 @@ char				*ft_ultoa_base(unsigned long n, int base, size_t caps) // original print
 	char			*out;
 
 	ndigits = count_digits(n, 0, base);
-	out = ft_calloc(ndigits + 1, sizeof(char));
+	out = ft_calloc(21, sizeof(char));
 	fill_digits(n, out + ndigits - 1, base, caps);
 	return ((char *)out);
 }

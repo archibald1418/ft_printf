@@ -2,6 +2,7 @@
 #include "libft.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <limits.h>
 
 typedef struct	s_substr 
 {

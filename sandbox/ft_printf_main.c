@@ -4,6 +4,6 @@
 // test commit
 int main()
 {
-	char *ptr;
-	
+	// char *ptr;
+	printf(" % ", 98);
 }
