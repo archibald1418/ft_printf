@@ -10,6 +10,7 @@ typedef struct	s_substr
 	ssize_t	end;
 }				t_substr;
 
+
 // printers
 int				ft_putchar_fd_(char c, int fd);
 int				ft_putstr_fd_(char *s, int fd);

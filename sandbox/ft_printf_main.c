@@ -5,5 +5,4 @@
 int main()
 {
 	// char *ptr;
-	printf(" % ", 98);
 }

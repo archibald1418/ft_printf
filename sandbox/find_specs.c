@@ -1,7 +1,6 @@
 #include "ft_printf.h"
 #define IS_SPACE(c) ((c) == 32 || (9 <= (c) && (c) <= 13))
 
-
 static char	*ft_alphchr(char *pfmt)
 {
 	while ((!ft_isalpha(*pfmt) && *pfmt != '%') && \
