@@ -4,5 +4,6 @@
 // test commit
 int main()
 {
-	printf("%s", ft_ultoa_base(1547487, 16, 0));
+	char *ptr;
+	printf("8387"); // TODO: check aloso on gcc debian
 }
