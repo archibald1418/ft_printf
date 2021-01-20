@@ -18,25 +18,24 @@ int	ft_printf(char *fmt, ...)
 	va_list args;
 	t_substr	*substr;
 	char *tmp;
+	size_t	i;
 	
 	va_start(args, fmt);
 
 	if (!(substr = malloc(sizeof(t_substr))))
 		return (-1);
-
 	ft_substr_init(substr);
-	while (fmt[substr->end] != '\0')
+	i = substr->start;
+	while (fmt[i] != '\0')
 	{
 		if (find_specs(fmt, substr) == 1)
-			tmp = ft_substr(substr->start, substr->end, substr->end - substr->start);
-		
-
+			if (!(tmp = ft_substr(substr->start, substr->end, substr->end - substr->start)))
+				return (ft_substr_clear(substr));
+			// call parser
+			// write parsed string
+		else
+			write(1, &fmt[i], substr->end - substr->start);
 		i = substr->end + 1;
 	}
-
-}
-
-	
-
 	va_end(args);
 }
