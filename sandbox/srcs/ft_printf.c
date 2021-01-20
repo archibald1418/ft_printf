@@ -20,7 +20,7 @@ int	ft_printf(char *fmt, ...)
 	
 	char *tmp;
 	
-	va_start(args, fmt);s
+	va_start(args, fmt);
 
 	ft_substr_init(&substr);
 	while (fmt[substr.end] != '\0')
