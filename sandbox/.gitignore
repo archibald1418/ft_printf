@@ -3,3 +3,4 @@ a.out
 *.gcha.out*.h.gch
 *.o
 ./vscode
+*.a

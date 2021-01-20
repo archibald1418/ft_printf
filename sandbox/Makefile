@@ -2,7 +2,7 @@ NAME		= ./libftprintf.a
 LIB			= ./libft/libft.a
 INCLUDES	= ./includes
 TESTFILE	= ft_printf_main.c
-SRCS		= ./srcs
+SRCS		= ./srcs/* ## TODO: write all c's by hand!
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 OBJS		= ${SRCS:.c=.o}
@@ -11,7 +11,7 @@ OBJS		= ${SRCS:.c=.o}
 TESTFLAGS	= -g -Wall
 
 .c.o:
-	${CC} ${CFLAGS} -I $(INCLUDES) -c $< -o $@
+	${CC} ${TESTFLAGS} -I $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) $(LIB)
 	ar rcs $(NAME) $?
@@ -32,8 +32,8 @@ re: fclean all
 
 ###  TESTS ### TODO: UDOLI!!!111
 
-test:
-	$(CC) $(TESTFLAGS) -L. -lftprintf $(TESTFILE)
+test: all
+	$(CC) $(TESTFLAGS) -L. -lftprintf $(TESTFILE) -I $(INCLUDES)
 
 .PHONY: all clean fclean re
 	
