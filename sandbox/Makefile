@@ -12,7 +12,7 @@ TESTFLAGS	= -g -Wall
 
 .c.o:
 	${CC} ${CFLAGS} -I $(INCLUDES) -c $< -o $@
-
+                                                                                                                                                                                              
 $(NAME): $(OBJS) $(LIB)
 	ar rcs $(NAME) $?
 
