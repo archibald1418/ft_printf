@@ -26,11 +26,11 @@ int	find_specs(char *fmt, t_substr *substr) // TODO: init substr outside
 	// size_t	perci;
 
 	substr->start = substr->end;
-	substr->end = ft_strchri(&fmt[substr->start], '%');
+	substr->end = ft_strchri(fmt, '%', substr->start);
 	if (!fmt[substr->end])
 		return (0);
 	substr->start += substr->end + 1;
-	substr->end = ft_alphchri(&fmt[substr->start]); // type check will be later
+	substr->end = ft_alphchri(fmt, substr->start); // type check will be later
 	if (!fmt[substr->end] || IS_SPACE(fmt[substr->end]))
 		return (0);
 	return (1);

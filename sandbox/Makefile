@@ -34,5 +34,5 @@ re: fclean all
 
 ### UDOLI ###
 test: $(LIB)
-	$(CC) -g -I $(INCLUDES) $(SOURCE) $(TEST) $(LIB)
+	$(CC) -g -I $(INCLUDES) $(SOURCE) $(TEST) libft/*.c
 
