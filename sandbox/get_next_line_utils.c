@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 04:59:24 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/19 19:05:19 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/20 01:36:08 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ t_list	*ft_lstnew_(size_t len)
 	new->next = NULL;
 	return (new);
 }
-
-// t_list	*ft_lstlast(t_list *lst)
-// {
-// 	t_list *node;
-
-// 	node = lst;
-// 	while (node->next)
-// 		node = node->next;
-// 	return (node);
-// }
 
 void	ft_lstappend_back_null(t_last *last, t_list *node)
 {
