@@ -14,9 +14,8 @@ static void	ft_substr_init(t_substr *substr)
 
 int	ft_printf(char *fmt, ...)
 {
-	t_substr	substr;
 	va_list		args;
-	t_substr	*substr;
+	t_substr	substr;
 	
 	char *tmp;
 	
@@ -26,13 +25,16 @@ int	ft_printf(char *fmt, ...)
 	while (fmt[substr.end] != '\0')
 	{
 		if (find_specs(fmt, &substr) == 1)
-			if (!(tmp = ft_substr(substr.start, substr.end, substr.end - substr.start))) // 
-				return (ft_substr_clear(&substr)); 
+		{
+			if (!(tmp = ft_substr(&fmt[substr.start], substr.end, substr.end - substr.start))) 
+				return (-1);
 				// FIXME: handle errors better later
 			// call parser
 			// write parsed string
-		else
+		} 
+		else 
 			write(1, &fmt[substr.start], substr.end - substr.start);
 	}
 	va_end(args);
+	return (1);
 }

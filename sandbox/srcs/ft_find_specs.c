@@ -1,11 +1,8 @@
 #include "ft_printf.h"
 #define IS_SPACE(c) ((c) == 32 || (9 <= (c) && (c) <= 13))
 
-size_t			ft_strchri(char *fmt, int c)
+size_t			ft_strchri(char *fmt, int c, size_t i)
 {
-	size_t i;
-
-	i = 0;
 	while (fmt[i] != '\0')
 	{
 		if (fmt[i] == (unsigned char)c)
@@ -15,11 +12,9 @@ size_t			ft_strchri(char *fmt, int c)
 	return (i);
 }
 
-static size_t	ft_alphchri(char *fmt)
+static size_t	ft_alphchri(char *fmt, size_t i)
 {
-	size_t i;
 
-	i = 0;
 	while ((!ft_isalpha(fmt[i]) && fmt[i] != '%') && \
 	(fmt[i] != '\0' || !IS_SPACE(fmt[i])))
 		i++;
@@ -28,13 +23,13 @@ static size_t	ft_alphchri(char *fmt)
 
 int	find_specs(char *fmt, t_substr *substr) // TODO: init substr outside
 {	
-	size_t	perci;
+	// size_t	perci;
 
 	substr->start = substr->end;
 	substr->end = ft_strchri(&fmt[substr->start], '%');
 	if (!fmt[substr->end])
 		return (0);
-	substr->start = substr->end + 1;
+	substr->start += substr->end + 1;
 	substr->end = ft_alphchri(&fmt[substr->start]); // type check will be later
 	if (!fmt[substr->end] || IS_SPACE(fmt[substr->end]))
 		return (0);

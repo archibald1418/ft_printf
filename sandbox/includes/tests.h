@@ -2,6 +2,7 @@
 # define TESTS_H
 
 # include "libft.h"
+#include <stdio.h>
 
 // Memes
 void	test_ft_memset(void);
