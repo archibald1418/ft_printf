@@ -27,12 +27,12 @@ int	ft_printf(char *fmt, ...)
 	{
 		if (find_specs(fmt, &substr) == 1)
 			if (!(tmp = ft_substr(substr.start, substr.end, substr.end - substr.start))) // 
-				return (ft_substr_clear(&substr)); // FIXME: handle errors better later
+				return (ft_substr_clear(&substr)); 
+				// FIXME: handle errors better later
 			// call parser
 			// write parsed string
 		else
 			write(1, &fmt[substr.start], substr.end - substr.start);
-		substr.start++;
 	}
 	va_end(args);
 }

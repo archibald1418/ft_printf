@@ -35,6 +35,11 @@ re: fclean all
 test:
 	$(CC) $(TESTFLAGS) -L. -lftprintf $(TESTFILE)
 
+testclean:
+	rm a.out
+	rm -rf *.dSYM
+
+
 .PHONY: all clean fclean re
 	
 
