@@ -23,13 +23,13 @@ int	ft_printf(char *fmt, ...)
 
 	if (!(substr = malloc(sizeof(t_substr))))
 		return (-1);
-		
+
 	ft_substr_init(substr);
 	while (fmt[substr->end] != '\0')
 	{
 		if (find_specs(fmt, substr) == 1)
 			tmp = ft_substr(substr->start, substr->end, substr->end - substr->start);
-			
+		
 
 		i = substr->end + 1;
 	}

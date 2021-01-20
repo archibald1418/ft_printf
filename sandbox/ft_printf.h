@@ -6,8 +6,8 @@
 
 typedef struct	s_substr 
 {
-	ssize_t	start;
-	ssize_t	end;
+	size_t	start;
+	size_t	end;
 }				t_substr;
 
 
