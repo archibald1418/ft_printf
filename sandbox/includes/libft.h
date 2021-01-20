@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 02:54:23 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/19 13:17:51 by ldonita          ###   ########.fr       */
+/*   Updated: 2020/12/03 16:36:11 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
-# include "get_next_line.h"
+
+typedef struct	s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);

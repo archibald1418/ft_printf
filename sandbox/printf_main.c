@@ -5,5 +5,5 @@
 int main()
 {
 	char *ptr;
-	printf("8387"); // TODO: check aloso on gcc debian
+	printf("%----78.9d", 45); // TODO: check aloso on gcc debian
 }

@@ -2,3 +2,4 @@ a.out
 *dSYM/
 *.gcha.out*.h.gch
 *.o
+./vscode
