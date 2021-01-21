@@ -33,7 +33,7 @@ int	ft_printf(char *fmt, ...)
 		substr.end = ft_alphchri(fmt, substr.start + 1);
 		if (!(tmp = ft_substr(fmt, substr.start, substr.end - substr.start + 1 ))) 
 			return (-1);
-		// parse substr
+		// parse substr total += parser(....)
 		// check for errors
 		free(tmp);
 		substr.start = (substr.end += 1);

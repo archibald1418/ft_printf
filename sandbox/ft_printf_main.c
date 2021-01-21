@@ -7,5 +7,5 @@ int main()
 	// char *ptr;
 	// printf("%-----.9d", 45); // TO_DO: check aloso on sgcc debian
 
-	ft_printf("adfjlkajshf      %d  as dlkfj ads   %0973d dsffgmk ");
+	printf("%15.5d", 100);
 }
