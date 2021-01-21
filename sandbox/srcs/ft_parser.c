@@ -1,10 +1,16 @@
 #include "ft_printf.h"
 #define IS_FLAG(c) ((c) == '0' || (c) == '-')
 
-// size_t		parse_flags(char *fmt, size_t start, t_data *data)
-// {
-// 	while ()
-// }
+size_t		parse_flags(char *fmt, size_t start, t_data *data)
+{
+	while (IS_FLAG(fmt[start]))
+	{
+		data->has_minus = (fmt[start] == '-') ? 1 : 0;
+		data->has_zero = (fmt[start] == '0') ? 1 : 0;
+		start++;
+	}
+	return (start);
+}
 
 static void		init_parser(t_data *data)
 {
