@@ -1,6 +1,6 @@
 NAME		= 	libftprintf.a
 DIR			=	srcs/
-SRC			=	ft_find_specs.c\
+SRC			=	ft_utils.c\
 				ft_printers.c\
 				ft_printf.c\
 				ft_ultoa_base.c

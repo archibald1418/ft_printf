@@ -1,11 +1,5 @@
 #include "ft_printf.h"
 
-static int	ft_substr_clear(t_substr *substr)
-{
-	free(substr);
-	return (-1);
-}
-
 static void	ft_substr_init(t_substr *substr)
 {
 	substr->start = 0;

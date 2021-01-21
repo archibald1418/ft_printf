@@ -10,15 +10,16 @@ typedef struct	s_substr
 	size_t	end;
 }				t_substr;
 
-
 typedef struct s_data
 {
-	int		flag; // '', 0, -
+	char	padding; // '', 0, -
+	int		has_minus;
+	int		has_zero;
 	int		width; // 0
 	int		prec; // 0 ->  
 	char	*pref; // "", "-", "0x"
 	char	*type_arg;
-	int		reslen; // return value
+	int		reslen; // parser return value
 }				t_data;
 
 // printers

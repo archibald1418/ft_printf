@@ -19,3 +19,9 @@ size_t	ft_alphchri(char *fmt, size_t i)
 		i++;
 	return (i);
 }
+
+int	ft_substr_clear(char *substr)
+{
+	free(substr);
+	return (-1);
+}
