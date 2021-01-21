@@ -16,24 +16,27 @@ int	ft_printf(char *fmt, ...)
 {
 	va_list		args;
 	t_substr	substr;
-	
+	size_t		total;
 	char *tmp;
 	
 	va_start(args, fmt);
 
+	total = 0;
 	ft_substr_init(&substr);
 	while (fmt[substr.end] != '\0')
 	{
-		if (find_specs(fmt, &substr) == 1)
-		{
-			if (!(tmp = ft_substr(&fmt[substr.start], substr.end, substr.end - substr.start))) 
-				return (-1);
-				// FIXME: handle errors better later
-			// call parser
-			// write parsed string
-		} 
-		else 
-			write(1, &fmt[substr.start], substr.end - substr.start);
+		substr.end = ft_strchri(fmt, '%', substr.start);
+		write(1, &fmt[substr.start], substr.end - substr.start);
+		substr.start = substr.end;
+		if (!fmt[substr.end])
+			return (total);
+		substr.end = ft_alphchri(fmt, substr.start + 1);
+		if (!(tmp = ft_substr(fmt, substr.start, substr.end - substr.start + 1 ))) 
+			return (-1);
+		// parse substr
+		// check for errors
+		free(tmp);
+		substr.start = (substr.end += 1);
 	}
 	va_end(args);
 	return (1);

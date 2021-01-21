@@ -12,9 +12,8 @@ size_t			ft_strchri(char *fmt, int c, size_t i)
 	return (i);
 }
 
-static size_t	ft_alphchri(char *fmt, size_t i)
+size_t	ft_alphchri(char *fmt, size_t i)
 {
-
 	while ((!ft_isalpha(fmt[i]) && fmt[i] != '%') && \
 	(fmt[i] != '\0' || !IS_SPACE(fmt[i])))
 		i++;
@@ -23,13 +22,7 @@ static size_t	ft_alphchri(char *fmt, size_t i)
 
 int	find_specs(char *fmt, t_substr *substr) // TODO: init substr outside
 {	
-	// size_t	perci;
 
-	substr->start = substr->end;
-	substr->end = ft_strchri(fmt, '%', substr->start);
-	if (!fmt[substr->end])
-		return (0);
-	substr->start += substr->end + 1;
 	substr->end = ft_alphchri(fmt, substr->start); // type check will be later
 	if (!fmt[substr->end] || IS_SPACE(fmt[substr->end]))
 		return (0);

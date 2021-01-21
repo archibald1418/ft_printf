@@ -19,7 +19,9 @@ int				ft_putstr_fd_(char *s, int fd);
 char				*ft_ultoa_base(unsigned long n, int base, size_t caps);
 
 // utils
-int	find_specs(char *pfmt, t_substr *substr);
+int				find_specs(char *pfmt, t_substr *substr);
+size_t			ft_strchri(char *fmt, int c, size_t i);
+size_t			ft_alphchri(char *fmt, size_t i);
 
 // main func
-int	ft_printf(char *fmt, ...);
+int			ft_printf(char *fmt, ...);
