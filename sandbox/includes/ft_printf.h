@@ -1,10 +1,11 @@
-#include "tests.h"
-#include "libft.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <limits.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include "libft.h"
+# include <stdarg.h>
+# include <unistd.h>
+# include <limits.h>
 
-typedef struct	s_substr 
+typedef struct	s_substr
 {
 	size_t	start;
 	size_t	end;
@@ -17,6 +18,7 @@ typedef struct s_data
 	int		has_zero;
 	int		width; // 0
 	int		prec; // 0 ->  
+	char	type_val;
 	char	*pref; // "", "-", "0x"
 	char	*type_arg;
 	int		reslen; // parser return value
@@ -34,5 +36,9 @@ int				find_specs(char *pfmt, t_substr *substr);
 size_t			ft_strchri(char *fmt, int c, size_t i);
 size_t			ft_alphchri(char *fmt, size_t i);
 
+ssize_t			ft_parser (char *fmt, t_substr *substr);
+
 // main func
 int			ft_printf(char *fmt, ...);
+
+#endif

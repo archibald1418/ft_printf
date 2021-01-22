@@ -2,7 +2,8 @@
 # define TESTS_H
 
 # include "libft.h"
-#include <stdio.h>
+# include "ft_printf.h"
+# include <stdio.h>
 
 // Memes
 void	test_ft_memset(void);
@@ -81,5 +82,9 @@ void	ft_fill_list_back(t_list **phead, size_t len, char **contents);
 t_list	*ft_lstfind_node(t_list **head, char *content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
+
+// structs
+void	ft_print_data (t_data *data);
+int		ft_is_data (t_data *data);
 
 #endif
