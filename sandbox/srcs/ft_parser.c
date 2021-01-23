@@ -1,6 +1,7 @@
 #include "ft_printf.h"
 #include "tests.h" // TODO: UDOLI
 #define IS_FLAG(c) ((c) == '0' || (c) == '-')
+#define ABS(x) (((x) >= 0) ? (x) : (x) * (-1))
 #define TYPES "cspdiuxX%"
 
 char	get_type(char *fmt, size_t index)
@@ -44,7 +45,23 @@ void		init_parser(t_data *data)
 	data->reslen = 0;		// 
 }
 
-ssize_t			ft_parser (char *fmt, t_substr *substr)
+void			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
+{
+
+	if (fmt[index] == '*')
+		data->width = va_arg(*argptr, int);
+	else
+		data->width = ft_atoi(&fmt[index]);
+	if (data->width < 0)
+	{
+		data->has_minus = 1;
+		data->has_zero = 0;
+		data->padding = ' ';
+		data->width = ABS(data->width);
+	}
+}
+
+ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 {
 	t_data	data;
 	size_t reslen;
@@ -58,7 +75,8 @@ ssize_t			ft_parser (char *fmt, t_substr *substr)
 	// ft_print_data(&data);
 	index = parse_flags(fmt, substr->start, &data);
 	// ft_print_data(&data);
-	
+	parse_width(&data, argptr, index, fmt);
+	ft_print_data(&data);
 	return (0);
 	// parse_flags
 }

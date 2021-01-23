@@ -29,7 +29,7 @@ int	ft_printf(char *fmt, ...)
 		// if (!(tmp = ft_substr(fmt, substr.start, substr.end - substr.start + 1 ))) 
 		// 	return (-1);
 		// free(tmp);
-		if ((out = ft_parser(fmt, &substr)) == -1)
+		if ((out = ft_parser(fmt, &substr, &args)) == -1)
 			return (-1);
 		total += out;
 		// parse substr total += parser(....)

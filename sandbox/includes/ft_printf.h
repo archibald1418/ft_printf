@@ -36,7 +36,8 @@ int				find_specs(char *pfmt, t_substr *substr);
 size_t			ft_strchri(char *fmt, int c, size_t i);
 size_t			ft_alphchri(char *fmt, size_t i);
 
-ssize_t			ft_parser (char *fmt, t_substr *substr);
+ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
+void			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
 
 // main func
 int			ft_printf(char *fmt, ...);

@@ -10,5 +10,5 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	ft_printf("%-----d", 67);
+	ft_printf("%-----8d", 67);
 }
