@@ -15,7 +15,7 @@ size_t			ft_strchri(char *fmt, int c, size_t i)
 size_t	ft_alphchri(char *fmt, size_t i)
 {
 	while ((!ft_isalpha(fmt[i]) && fmt[i] != '%') && \
-	(fmt[i] != '\0' || !IS_SPACE(fmt[i])))
+	(fmt[i] != '\0' && !IS_SPACE(fmt[i])))
 		i++;
 	return (i);
 }

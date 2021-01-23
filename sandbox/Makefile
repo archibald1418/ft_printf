@@ -12,9 +12,11 @@ INCLUDES	=	./includes
 FLAGS		=	-Wall ### ADD -Wall -Werror -Wextra later
 LIB			=	libft/libft.a
 
-### UDOLI ###
-TESTFILE 	= ft_printf_main.c
-TESTSRCS	= ./tests/*.c
+### TESTS ###
+TESTSRC		= ft_print_data.c
+TESTFILE 	= main.c
+TESTDIR		= tests/
+TESTSOURCE	= $(addprefix $(TESTDIR), $(TESTSRC))
 
 all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
@@ -36,4 +38,10 @@ re: fclean all
 
 ### UDOLI ###
 test: $(LIB)
-	$(CC) -g -I $(INCLUDES) $(SOURCE) $(TESTSRCS) $(TESTFILE) libft/*.c
+	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
+	@echo
+	./a.out
+
+test-struct:
+	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
+	./a.out
