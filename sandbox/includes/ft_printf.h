@@ -19,7 +19,7 @@ typedef struct s_data
 	int		width; // 0
 	int		prec; // 0 ->  
 	char	type_val;
-	char	*pref; // "", "-", "0x"
+	char	*pref; // "", "-", "0x" // FIXME: 0x -> 0x10
 	char	*type_arg;
 	int		reslen; // parser return value
 }				t_data;

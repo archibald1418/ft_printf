@@ -34,7 +34,7 @@ size_t	parse_flags(char *fmt, size_t start, t_data *data)
 
 void		init_parser(t_data *data)
 {
-	data->padding = '\0';		// '', 0, -
+	data->padding = ' ';		// '', 0, -
 	data->has_minus = 0;
 	data->has_zero = 0;
 	data->width = 0;		// 0
@@ -51,14 +51,15 @@ void			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	if (fmt[index] == '*')
 		data->width = va_arg(*argptr, int);
 	else
-		data->width = ft_atoi(&fmt[index]);
+		data->width = ft_atoi(&fmt[index]); // TODO: test width == 0 if not present
 	if (data->width < 0)
 	{
 		data->has_minus = 1;
 		data->has_zero = 0;
-		data->padding = ' ';
 		data->width = ABS(data->width);
 	}
+	if (data->has_zero)
+		data->padding = '0';
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)

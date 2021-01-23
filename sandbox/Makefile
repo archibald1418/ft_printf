@@ -41,7 +41,10 @@ test: $(LIB)
 	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
 	@echo
 	./a.out
+	@make clean
 
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
 	./a.out
+	@echo
+	@make clean

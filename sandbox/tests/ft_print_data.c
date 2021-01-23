@@ -2,7 +2,7 @@
 
 int		ft_is_data (t_data *data)
 {
-	return (data->padding &&	\
+	return (data->padding == ' ' &&	\
 			data->has_minus &&	\
 			data->has_zero &&	\
 			data->width &&		\
