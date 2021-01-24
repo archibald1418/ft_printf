@@ -41,6 +41,7 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
 size_t			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
 size_t			parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt);
 
+
 // main func
 int			ft_printf(char *fmt, ...);
 

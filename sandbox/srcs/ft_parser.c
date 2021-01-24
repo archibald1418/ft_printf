@@ -99,9 +99,20 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	return (index + ullen);
 }
 
-size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
+char	*get_type_val (char type_arg, va_list *argptr)
 {
-	
+	;
+	return (NULL);
+}
+
+size_t		parse_type (t_data *data, va_list *argptr, size_t index, char *fmt)
+{
+	/* this updates
+	- prefix (if any)
+	- type_val 
+	- flags (if needed) 
+	- precision (if needed) */
+	return (0);
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
