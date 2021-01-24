@@ -10,6 +10,7 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	printf("%.012d", 9);
+	printf("%*.*d");
+	// cases with 0 as integer are weird....
 	// write(1, "5", -1);
 }

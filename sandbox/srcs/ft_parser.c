@@ -93,7 +93,7 @@ size_t		parse_prec (t_data *data, va_list *argptr, size_t index, char *fmt)
 		arg = ft_atoi(&fmt[index]); // thik of prec == -1 
 		ullen = ft_ullen(data->prec, 0);
 	}
-	data->prec = (arg < 0) ? -1 : arg;
+	data->prec = (arg < 0) ? 0 : arg;
 	if (is_num_type(data->type_val))
 		cancel_zero(data);
 	return (index + ullen);
@@ -116,8 +116,11 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	substr->start = parse_width(&data, argptr, substr->start, fmt);
 	// ft_print_data(&data);
 
-	if (substr->start == '.')
+	if (fmt[substr->start] == '.')
+	{	
+		substr->start++;
 		substr->start = parse_prec(&data, argptr, substr->start, fmt);
+	}
 	ft_print_data(&data);
 	return (0);
 	// parse_flags
