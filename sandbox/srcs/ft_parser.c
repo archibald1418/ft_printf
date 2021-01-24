@@ -80,7 +80,7 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	return (index + ullen);
 }
 
-size_t		parse_prec (t_data *data, va_list *argptr, size_t index, char *fmt)
+size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 {
 	size_t ullen;
 	int arg;
@@ -97,6 +97,11 @@ size_t		parse_prec (t_data *data, va_list *argptr, size_t index, char *fmt)
 	if (is_num_type(data->type_val))
 		cancel_zero(data);
 	return (index + ullen);
+}
+
+size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
+{
+	
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
@@ -119,7 +124,7 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	if (fmt[substr->start] == '.')
 	{	
 		substr->start++;
-		substr->start = parse_prec(&data, argptr, substr->start, fmt);
+		substr->start = parse_precision(&data, argptr, substr->start, fmt);
 	}
 	ft_print_data(&data);
 	return (0);

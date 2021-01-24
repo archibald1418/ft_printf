@@ -44,3 +44,7 @@ test: $(LIB)
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
 	./a.out
+
+test-master:
+	$(CC) master_main.c
+	./a.out
