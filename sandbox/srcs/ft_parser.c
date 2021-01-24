@@ -17,6 +17,17 @@ void		init_parser(t_data *data)
 	data->reslen = 0;		// 
 }
 
+void		cancel_zero (t_data *data)
+{
+	data->has_zero = 0;
+	data->padding = ' ';
+}
+
+int		is_num_type (char type)
+{
+	return (!(type == '%' || type == 'c' || type == 's' || type == 'p'));
+}
+
 char	get_type(char *fmt, size_t index)
 {
 	size_t i;
@@ -69,10 +80,23 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	return (index + ullen);
 }
 
-size_t		parse_precision(t_data *data, va_list *argptr, size_t index, char *fmt)
+size_t		parse_prec (t_data *data, va_list *argptr, size_t index, char *fmt)
 {
-	;
-	return (index);
+	size_t ullen;
+	int arg;
+
+	if (fmt[index] == '*')
+	{
+		arg = va_arg(*argptr, int);
+		ullen = 1;
+	} else if (ft_isdigit(fmt[index])){ 
+		arg = ft_atoi(&fmt[index]); // thik of prec == -1 
+		ullen = ft_ullen(data->prec, 0);
+	}
+	data->prec = (arg < 0) ? -1 : arg;
+	if (is_num_type(data->type_val))
+		cancel_zero(data);
+	return (index + ullen);
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
@@ -90,11 +114,11 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	substr->start = parse_flags(fmt, substr->start, &data);
 	// ft_print_data(&data);
 	substr->start = parse_width(&data, argptr, substr->start, fmt);
-	ft_print_data(&data);
+	// ft_print_data(&data);
 
 	if (substr->start == '.')
-		substr->start = parse_precision(&data, argptr, substr->start, fmt);
-	
+		substr->start = parse_prec(&data, argptr, substr->start, fmt);
+	ft_print_data(&data);
 	return (0);
 	// parse_flags
 }
