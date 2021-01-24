@@ -25,3 +25,12 @@ int	ft_substr_clear(char *substr)
 	free(substr);
 	return (-1);
 }
+
+size_t		ft_ullen(unsigned long n, size_t i)
+{
+	if (n == 0 && i == 0)
+		return (0); // width
+	if (n == 0)
+		return (i);
+	return (ft_ullen(n / 10, i + 1));
+}

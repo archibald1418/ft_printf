@@ -45,21 +45,29 @@ void		init_parser(t_data *data)
 	data->reslen = 0;		// 
 }
 
-void			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
+size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 {
+	size_t ullen;
 
+	ullen = 0;
 	if (fmt[index] == '*')
+	{
 		data->width = va_arg(*argptr, int);
-	else
+		ullen = 1;
+	} else if (ft_isdigit(fmt[index])){
 		data->width = ft_atoi(&fmt[index]); // TODO: test width == 0 if not present
+		ullen = ft_ullen(data->width, 0);
+	}
 	if (data->width < 0)
 	{
 		data->has_minus = 1;
 		data->has_zero = 0;
-		data->width = ABS(data->width);
+		data->width = ABS(data->width); // INT_MIN stays negative, but write will write nothing))
 	}
 	if (data->has_zero)
 		data->padding = '0';
+	return (index + ullen);
+
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
@@ -71,13 +79,14 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	reslen = 0;
 	init_parser(&data);
 	if ((data.type_val = get_type(fmt, substr->end)) == '\0')
-		return (-1);
-	substr->start += 1;
+		return (-1); // TODO: maybe write pattern as plain chars if bad specifier
+	substr->start++;
 	// ft_print_data(&data);
-	index = parse_flags(fmt, substr->start, &data);
+	substr->start = parse_flags(fmt, substr->start, &data);
 	// ft_print_data(&data);
-	parse_width(&data, argptr, index, fmt);
+	substr->start = parse_width(&data, argptr, substr->start, fmt);
 	ft_print_data(&data);
+
 	return (0);
 	// parse_flags
 }
