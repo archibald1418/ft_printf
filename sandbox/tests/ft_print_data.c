@@ -2,15 +2,15 @@
 
 int		ft_is_data (t_data *data)
 {
-	return (data->padding == ' ' &&	\
-			data->has_minus &&	\
-			data->has_zero &&	\
-			data->width &&		\
-			data->prec &&		\
-			(*data->pref) &&	\
-			data->type_val &&	\
-			(*data->type_arg) &&\
-			data->reslen);
+	return (data->padding == ' '	&&	\
+			data->has_minus			&&	\
+			data->has_zero			&&	\
+			data->width				&&	\
+			(data->prec < 0)		&&	\
+			(*data->pref)			&&	\
+			data->type_val			&&	\
+			(*data->type_arg)		&&	\
+			data->reslen);		// prec==0 is significant
 }
 
 void	ft_print_data (t_data *data)

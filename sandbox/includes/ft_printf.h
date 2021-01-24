@@ -38,7 +38,8 @@ size_t			ft_alphchri(char *fmt, size_t i);
 size_t			ft_ullen(unsigned long n, size_t i);
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
-size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
+size_t			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
+size_t			parse_precision(t_data *data, va_list *argptr, size_t index, char *fmt);
 
 // main func
 int			ft_printf(char *fmt, ...);

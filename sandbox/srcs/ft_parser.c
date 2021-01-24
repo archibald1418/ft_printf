@@ -4,6 +4,19 @@
 #define ABS(x) (((x) >= 0) ? (x) : (x) * (-1))
 #define TYPES "cspdiuxX%"
 
+void		init_parser(t_data *data)
+{
+	data->padding = ' ';		// '', 0, -
+	data->has_minus = 0;
+	data->has_zero = 0;
+	data->width = 0;		// 0
+	data->prec = -1;			// 0 ->  
+	data->pref = "";	// "", "-", "0x" -> 0x10
+	data->type_val = '\0';
+	data->type_arg = "";	// 
+	data->reslen = 0;		// 
+}
+
 char	get_type(char *fmt, size_t index)
 {
 	size_t i;
@@ -32,19 +45,6 @@ size_t	parse_flags(char *fmt, size_t start, t_data *data)
 	return (start);
 }
 
-void		init_parser(t_data *data)
-{
-	data->padding = ' ';		// '', 0, -
-	data->has_minus = 0;
-	data->has_zero = 0;
-	data->width = 0;		// 0
-	data->prec = 0;			// 0 ->  
-	data->pref = "";	// "", "-", "0x"
-	data->type_val = '\0';
-	data->type_arg = "";	// 
-	data->reslen = 0;		// 
-}
-
 size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 {
 	size_t ullen;
@@ -67,7 +67,12 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	if (data->has_zero)
 		data->padding = '0';
 	return (index + ullen);
+}
 
+size_t		parse_precision(t_data *data, va_list *argptr, size_t index, char *fmt)
+{
+	;
+	return (index);
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
@@ -87,6 +92,9 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	substr->start = parse_width(&data, argptr, substr->start, fmt);
 	ft_print_data(&data);
 
+	if (substr->start == '.')
+		substr->start = parse_precision(&data, argptr, substr->start, fmt);
+	
 	return (0);
 	// parse_flags
 }
