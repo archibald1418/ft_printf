@@ -32,5 +32,5 @@ char				*ft_ultoa_base(unsigned long n, int base, size_t caps) // original print
 	ndigits = count_digits(n, 0, base);
 	out = ft_calloc(21, sizeof(char));
 	fill_digits(n, out + ndigits - 1, base, caps);
-	return ((char *)out);
+	return (out);
 }

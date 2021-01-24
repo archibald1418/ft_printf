@@ -36,6 +36,15 @@ int				find_specs(char *pfmt, t_substr *substr);
 size_t			ft_strchri(char *fmt, int c, size_t i);
 size_t			ft_alphchri(char *fmt, size_t i);
 size_t			ft_ullen(unsigned long n, size_t i);
+// parser utils
+void			cancel_zero (t_data *data);
+int				is_num_type (char type);
+// converters
+void	set_diuXx (unsigned long num, t_data *data);
+void	set_c(char c, t_data *data);
+void	set_s(char *s, t_data *data);
+void	set_p (unsigned long num, t_data *data);
+void	set_type(t_data *data, va_list *argptr);
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
 size_t			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);

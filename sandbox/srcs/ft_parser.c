@@ -1,8 +1,6 @@
 #include "ft_printf.h"
 #include "tests.h" // TODO: UDOLI
 #define IS_FLAG(c) ((c) == '0' || (c) == '-')
-#define ABS(x) (((x) >= 0) ? (x) : (x) * (-1))
-#define TYPES "cspdiuxX%"
 
 void		init_parser(t_data *data)
 {
@@ -15,31 +13,6 @@ void		init_parser(t_data *data)
 	data->type_val = '\0';
 	data->type_arg = "";	// 
 	data->reslen = 0;		// 
-}
-
-void		cancel_zero (t_data *data)
-{
-	data->has_zero = 0;
-	data->padding = ' ';
-}
-
-int		is_num_type (char type)
-{
-	return (!(type == '%' || type == 'c' || type == 's' || type == 'p'));
-}
-
-char	get_type(char *fmt, size_t index)
-{
-	size_t i;
-
-	i = 0;
-	while (TYPES[i] != '\0')
-	{
-		if (fmt[index] == TYPES[i])
-			return (TYPES[i]);
-		i++;
-	}
-	return ('\0'); // unknown type
 }
 
 size_t	parse_flags(char *fmt, size_t start, t_data *data)
@@ -65,7 +38,9 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	{
 		data->width = va_arg(*argptr, int);
 		ullen = 1;
-	} else if (ft_isdigit(fmt[index])){
+	} 
+	else if (ft_isdigit(fmt[index]))
+	{
 		data->width = ft_atoi(&fmt[index]); // TODO: test width == 0 if not present
 		ullen = ft_ullen(data->width, 0);
 	}
@@ -73,7 +48,7 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	{
 		data->has_minus = 1;
 		data->has_zero = 0;
-		data->width = ABS(data->width); // INT_MIN stays negative, but write will write nothing))
+		data->width = ft_abs(data->width);
 	}
 	if (data->has_zero)
 		data->padding = '0';
@@ -99,20 +74,13 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	return (index + ullen);
 }
 
-char	*get_type_val (char type_arg, va_list *argptr)
+ssize_t		parse_type (t_data *data, va_list *argptr, size_t index, char *fmt)
 {
-	;
-	return (NULL);
-}
-
-size_t		parse_type (t_data *data, va_list *argptr, size_t index, char *fmt)
-{
-	/* this updates
-	- prefix (if any)
-	- type_val 
-	- flags (if needed) 
-	- precision (if needed) */
-	return (0);
+	
+	set_type(data, argptr);
+	if (data->type_arg == NULL)
+		return (-1);
+	return (1);
 }
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)

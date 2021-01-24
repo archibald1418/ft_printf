@@ -34,3 +34,10 @@ size_t		ft_ullen(unsigned long n, size_t i)
 		return (i);
 	return (ft_ullen(n / 10, i + 1));
 }
+
+size_t		ft_abs(long n, size_t i)
+{
+	if (n < 0)
+		return (n * -1);
+	return (n);
+}
