@@ -11,7 +11,8 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	ft_printf("%p", (void *)229);
+	printf("%05.2%");
+	// printf("%-010%");
 	// printf("1|%24p|\n", (void *)24); 
 	// printf("2|%-24p|\n", (void *)24); 
 	// // printf("3|%24.5p|\n", (void *)24); 
@@ -21,7 +22,7 @@ int main()
 	// printf("7|%.p|\n", (void *)0); 
 	// printf("8|%.p|\n", (void *)0); // prec == 0 && arg == 0 -> 0x
 	// printf("8|%.p|\n", (void *)0); // prec == 0 && arg == 0 -> 0x
-	// printf("9|%24p|\n", (void *)(ULONG_MAX + INT_MAX)); 
+	// printf("9|%24p|\n", (void *)(ULONG_MAX + INT_MAX));
 	// //else if (prec != 0) 
 		//printf (0x0)
 

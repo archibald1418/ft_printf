@@ -40,9 +40,7 @@ void	set_c(char c, t_data *data)
 	}
 	out[0] = c;
 	data->arg_val = out;
-	data->prec = -1; // char deinits precision
-	if (c == '%')
-		data->prec = 1;
+	data->prec = (c == '%'); // data->width and zero flag let it go
 }
 
 void	set_s(char *s, t_data *data)
@@ -54,7 +52,6 @@ void	set_s(char *s, t_data *data)
 	{
 		if (!(out = ft_strdup("(null)")))
 			data->arg_val = NULL;
-		return ;
 	}
 	else if (!(out = ft_strdup(s)))
 		data->arg_val = NULL;
@@ -70,7 +67,12 @@ void	set_p (unsigned long num, t_data *data)
 	{
 		data->pref = "0x"; // 0x or 0x10???
 		data->arg_val = out;
-		data->prec = (data->prec > -1) ? 0 : -1;
+		if (data->prec != -1)
+		{
+			data->prec = -1;
+			if (*data->arg_val == '0')
+				data->prec = 0;
+		}
 	}
 }
 

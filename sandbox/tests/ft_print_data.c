@@ -23,7 +23,7 @@ void	ft_print_data (t_data *data)
 	char *prec = "precision = ";
 	char *pref = "pref = ";
 	char *tv = "type value = ";
-	char *ta = "type argument = ";
+	char *ta = "arg value = ";
 	char *rl = "result length = ";
 	printf("\n\n");
 	if (!ft_is_data(data))
