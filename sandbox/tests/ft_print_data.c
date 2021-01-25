@@ -9,7 +9,7 @@ int		ft_is_data (t_data *data)
 			(data->prec < 0)		&&	\
 			(*data->pref)			&&	\
 			data->type_val			&&	\
-			(*data->type_arg)		&&	\
+			(*data->arg_val)		&&	\
 			data->reslen);		// prec==0 is significant
 }
 
@@ -35,7 +35,7 @@ void	ft_print_data (t_data *data)
 		printf("%*s%d\n", -width, prec, data->prec);
 		printf("%*s'%s'\n", -width, pref, data->pref);
 		printf("%*s%c\n", -width, tv, data->type_val);
-		printf("%*s'%s'\n", -width, ta, data->type_arg);
+		printf("%*s'%s'\n", -width, ta, data->arg_val);
 		printf("%*s%d\n", -width, rl, data->reslen);
 	}
 	else

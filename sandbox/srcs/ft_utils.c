@@ -26,7 +26,7 @@ int	ft_substr_clear(char *substr)
 	return (-1);
 }
 
-size_t		ft_ullen(unsigned long n, size_t i)
+size_t			ft_ullen(unsigned long n, size_t i)
 {
 	if (n == 0 && i == 0)
 		return (0); // width
@@ -35,9 +35,9 @@ size_t		ft_ullen(unsigned long n, size_t i)
 	return (ft_ullen(n / 10, i + 1));
 }
 
-size_t		ft_abs(long n, size_t i)
+unsigned long	ft_abs(long n)
 {
 	if (n < 0)
-		return (n * -1);
-	return (n);
+		return ((unsigned long)(n * (-1)));
+	return ((unsigned long)n);
 }

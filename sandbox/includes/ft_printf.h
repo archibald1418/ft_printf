@@ -20,7 +20,7 @@ typedef struct s_data
 	int		prec; // 0 ->  
 	char	type_val;
 	char	*pref; // "", "-", "0x" // FIXME: 0x -> 0x10
-	char	*type_arg;
+	char	*arg_val;
 	int		reslen; // parser return value
 }				t_data;
 
@@ -29,22 +29,24 @@ int				ft_putchar_fd_(char c, int fd);
 int				ft_putstr_fd_(char *s, int fd);
 
 // unsigned long to ascii
-char				*ft_ultoa_base(unsigned long n, int base, size_t caps);
+char			*ft_ultoa_base(unsigned long n, int base, size_t caps);
 
 // utils
 int				find_specs(char *pfmt, t_substr *substr);
 size_t			ft_strchri(char *fmt, int c, size_t i);
 size_t			ft_alphchri(char *fmt, size_t i);
 size_t			ft_ullen(unsigned long n, size_t i);
+unsigned long	ft_abs(long n);
 // parser utils
 void			cancel_zero (t_data *data);
 int				is_num_type (char type);
+char			get_type(char *fmt, size_t index);
 // converters
-void	set_diuXx (unsigned long num, t_data *data);
-void	set_c(char c, t_data *data);
-void	set_s(char *s, t_data *data);
-void	set_p (unsigned long num, t_data *data);
-void	set_type(t_data *data, va_list *argptr);
+void			set_diuXx (unsigned long num, t_data *data);
+void			set_c(char c, t_data *data);
+void			set_s(char *s, t_data *data);
+void			set_p (unsigned long num, t_data *data);
+void			set_type(t_data *data, va_list *argptr);
 
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
 size_t			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
@@ -52,6 +54,6 @@ size_t			parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt
 
 
 // main func
-int			ft_printf(char *fmt, ...);
+int				ft_printf(char *fmt, ...);
 
 #endif

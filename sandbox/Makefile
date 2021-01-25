@@ -4,7 +4,10 @@ SRC			=	ft_utils.c\
 				ft_printers.c\
 				ft_printf.c\
 				ft_ultoa_base.c\
-				ft_parser.c
+				ft_parser.c\
+				ft_parser_utils.c\
+				ft_converters.c
+
 CC			=	gcc
 SOURCE		=	$(addprefix $(DIR), $(SRC))
 OBJ			=	${SOURCE.c:=.o}
