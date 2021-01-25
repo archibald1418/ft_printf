@@ -24,6 +24,14 @@ typedef struct s_data
 	int		reslen; // parser return value
 }				t_data;
 
+typedef struct	s_lens
+{
+	int padding;
+	int zeros;
+	int arg;
+	int prefix;
+}				t_lens;
+
 // printers
 int				ft_putchar_fd_(char c, int fd);
 int				ft_putstr_fd_(char *s, int fd);

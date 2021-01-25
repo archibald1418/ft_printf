@@ -52,9 +52,13 @@ void	set_s(char *s, t_data *data)
 	{
 		if (!(out = ft_strdup("(null)")))
 			data->arg_val = NULL;
+			return ;
 	}
-	else if (!(out = ft_strdup(s)))
+	if (!(out = ft_strdup(s)))
+	{
 		data->arg_val = NULL;
+		return ;
+	}
 	data->arg_val = out;
 }
 
@@ -62,17 +66,17 @@ void	set_p (unsigned long num, t_data *data)
 {
 	char *out;
 	if (!(out = ft_ultoa_base(num, 16, 0)))
-		data->arg_val = NULL;
-	else 
 	{
-		data->pref = "0x"; // 0x or 0x10???
-		data->arg_val = out;
-		if (data->prec != -1)
-		{
-			data->prec = -1;
-			if (*data->arg_val == '0')
-				data->prec = 0;
-		}
+		data->arg_val = NULL;
+		return ;
+	}
+	data->pref = "0x";
+	data->arg_val = out;
+	if (data->prec != -1)
+	{
+		data->prec = -1;
+		if (*data->arg_val == '0')
+			data->prec = 0;
 	}
 }
 
