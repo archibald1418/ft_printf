@@ -11,7 +11,7 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	printf("%13.4x", 434);
+	ft_printf("12345= %d =54321", 47658);
 	// printf("%-010%");
 	// printf("1|%24p|\n", (void *)24); 
 	// printf("2|%-24p|\n", (void *)24); 

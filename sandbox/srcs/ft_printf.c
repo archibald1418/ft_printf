@@ -11,7 +11,6 @@ int	ft_printf(char *fmt, ...)
 	va_list		args;
 	t_substr	substr;
 	size_t		total;
-	char		*tmp;
 	int			out;
 	
 	va_start(args, fmt);
@@ -26,16 +25,11 @@ int	ft_printf(char *fmt, ...)
 		if (!fmt[substr.end])
 			return (total);
 		substr.end = ft_alphchri(fmt, substr.start + 1);
-		// if (!(tmp = ft_substr(fmt, substr.start, substr.end - substr.start + 1 ))) 
-		// 	return (-1);
-		// free(tmp);
 		if ((out = ft_parser(fmt, &substr, &args)) == -1)
 			return (-1);
 		total += out;
-		// parse substr total += parser(....)
-		// check for errors
 		substr.start = (substr.end += 1);
 	}
 	va_end(args);
-	return (out);
+	return (total);
 }

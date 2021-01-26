@@ -35,6 +35,11 @@ typedef struct	s_lens
 // printers
 int				ft_putchar_fd_(char c, int fd);
 int				ft_putstr_fd_(char *s, int fd);
+int				ft_putcharn (char c, size_t n);
+int				ft_print_prefix(t_data *data);
+void			ft_print_cs(t_data *data);
+void			ft_print_diuXxp(t_data *data);
+void			ft_print(t_data *data);
 
 // unsigned long to ascii
 char			*ft_ultoa_base(unsigned long n, int base, size_t caps);

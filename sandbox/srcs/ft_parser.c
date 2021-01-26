@@ -107,6 +107,10 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	}
 	// ft_print_data(&data);
 	parse_type(&data, argptr);
+	// ft_print_data(&data);
+	if (data.arg_val == NULL)
+		return (-1);
+	ft_print(&data);
 	ft_print_data(&data);
-	return (0); // TODO: count write
+	return (data.reslen); // TODO: count write
 }
