@@ -31,10 +31,10 @@ int		ft_print_prefix(t_data *data)
 }
 void	ft_print_cs(t_data *data)
 {
-	size_t	i;
-	size_t	end;
+	int		i;
+	int		end;
 	size_t	len_padding;
-	int		total;
+	size_t	total;
 
 	i = 0;
 	total = 0;
@@ -53,7 +53,7 @@ void	ft_print_cs(t_data *data)
 
 void	ft_print_diuXxp(t_data *data)
 {
-	size_t len;
+	int		len;
 	size_t len_zeros;
 	size_t len_padding;
 	size_t len_arg;

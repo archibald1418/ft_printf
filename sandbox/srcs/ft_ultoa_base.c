@@ -5,7 +5,7 @@
 
 static void			fill_digits(unsigned long n, char *str, int base, size_t caps) 
 {
-	if (n >= base)
+	if (n >= (unsigned long)base)
 	{
 		fill_digits(n / base, str - 1, base, caps);
 		fill_digits(n % base, str, base, caps);

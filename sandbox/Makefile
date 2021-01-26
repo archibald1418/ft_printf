@@ -12,7 +12,7 @@ CC			=	gcc
 SOURCE		=	$(addprefix $(DIR), $(SRC))
 OBJ			=	${SOURCE:.c=.o}
 INCLUDES	=	./includes
-FLAGS		=	-Wall -Wextra ### ADD -Wall -Werror -Wextra later
+FLAGS		=	-Wall -Wextra -Werror
 LIB			=	./libft/libft.a
 
 ### TESTS ###

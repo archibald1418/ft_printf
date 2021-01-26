@@ -61,6 +61,7 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 
 	data->prec = 0; // at this point we have a ".", which inits precision to 0"
 	ullen = 1;
+	arg = 0;
 	if (fmt[index] == '*')
 	{
 		arg = va_arg(*argptr, int);
@@ -86,7 +87,6 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 {
 	t_data	data;
 	size_t reslen;
-	size_t index;
 
 	reslen = 0;
 	init_parser(&data);

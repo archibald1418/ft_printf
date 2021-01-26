@@ -2,5 +2,9 @@ a.out
 *dSYM/
 *.gcha.out*.h.gch
 *.o
-./vscode
+*.vscode
 *.a
+*.swp
+*.txt
+*.a
+42TESTERS-PRINTF/
