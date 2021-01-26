@@ -111,7 +111,7 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	if (data.arg_val == NULL)
 		return (-1);
 	ft_print(&data);
-	ft_print_data(&data);
+	// ft_print_data(&data);
 	free(data.arg_val);
 	return (data.reslen); // TODO: count write
 }

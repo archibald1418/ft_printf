@@ -13,8 +13,8 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	printf("func returned ->%d\n", ft_printf("|===== %x %d %p =====|", 789, INT_MIN + 1, (void *)0));
-	// printf("%-010%");
+	printf("\nfunc returned ->%d\n", ft_printf("hello world"));
+	// printf("%-010%");s
 	// printf("1|%24p|\n", (void *)24); 
 	// printf("2|%-24p|\n", (void *)24); 
 	// // printf("3|%24.5p|\n", (void *)24); 

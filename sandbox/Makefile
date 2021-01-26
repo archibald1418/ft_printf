@@ -43,17 +43,17 @@ re: fclean all
 test: $(LIB)
 	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
 	./a.out;
-	@chmod +r struct.txt
-	@chmod +r len.txt
-	@echo "Parsed:::"
-	@cat struct.txt
-	@echo "ft_printf returned:::"
-	@cat len.txt
+	@# @chmod +r struct.txt
+	@# @chmod +r len.txt
+	@# @echo "Parsed:::"
+	@# @cat struct.txt
+	@# @echo "ft_printf returned:::"
+	@# @cat len.txt
 
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
 	./a.out
 
 test-master:
-	$(CC) master_main.c
+	$(CC) -g -I $(INCLUDES) master_main.c $(SOURCE) $(LIB)
 	./a.out
