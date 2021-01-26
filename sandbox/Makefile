@@ -6,7 +6,7 @@ SRC			=	ft_utils.c\
 				ft_ultoa_base.c\
 				ft_parser.c\
 				ft_parser_utils.c\
-				ft_converters.c
+				ft_setters.c
 
 CC			=	gcc
 SOURCE		=	$(addprefix $(DIR), $(SRC))
