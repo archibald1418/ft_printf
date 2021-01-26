@@ -13,7 +13,7 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	printf("func returned ->%d\n", ft_printf("|12345= %x|", 789, 'l'));
+	printf("func returned ->%d\n", ft_printf("|===== %x %d %p =====|", 789, INT_MIN + 1, (void *)0));
 	// printf("%-010%");
 	// printf("1|%24p|\n", (void *)24); 
 	// printf("2|%-24p|\n", (void *)24); 

@@ -75,7 +75,7 @@ void	ft_print_diuXxp(t_data *data)
 
 void	ft_print(t_data *data)
 {
-	if (is_num_type(data->type_val))
+	if (is_num_type(data->type_val) || data->type_val == 'p')
 		ft_print_diuXxp(data);
 	else
 		ft_print_cs(data);

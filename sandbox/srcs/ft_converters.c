@@ -72,12 +72,6 @@ void	set_p (unsigned long num, t_data *data)
 	}
 	data->pref = "0x";
 	data->arg_val = out;
-	if (data->prec != -1)
-	{
-		data->prec = -1;
-		if (*data->arg_val == '0')
-			data->prec = 0;
-	}
 }
 
 void	set_type(t_data *data, va_list *argptr)
