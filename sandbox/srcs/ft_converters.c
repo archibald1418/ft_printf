@@ -40,7 +40,7 @@ void	set_c(char c, t_data *data)
 	}
 	out[0] = c;
 	data->arg_val = out;
-	data->prec = (c == '%'); // data->width and zero flag let it go
+	data->prec = -1;
 }
 
 void	set_s(char *s, t_data *data)

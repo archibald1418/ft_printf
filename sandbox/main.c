@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <stddef.h>
 // test commit
 
 int main()
@@ -11,7 +13,7 @@ int main()
 	// printf("%sjhlsdakjfhdsalkjfasd %8934d  sadjkfhlkaj %%d");
 	// ft_printf("alsdjfhsdkj %87349  sadjhflkj");
 
-	ft_printf("12345= %d =54321", 47658);
+	printf("func returned ->%d\n", ft_printf("|12345= %x|", 789, 'l'));
 	// printf("%-010%");
 	// printf("1|%24p|\n", (void *)24); 
 	// printf("2|%-24p|\n", (void *)24); 

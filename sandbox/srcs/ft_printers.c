@@ -39,15 +39,16 @@ void	ft_print_cs(t_data *data)
 	i = 0;
 	total = 0;
 	end = (data->prec == -1) ? ft_strlen(data->arg_val) : data->prec;
+	len_padding = (data->width >= end) ? data->width - end : 0;
 	if (!data->has_minus)
-		data->reslen += ft_putcharn(data->padding, data->width - end);
+		data->reslen += ft_putcharn(data->padding, len_padding);
 	while (i < end)
 	{
 		data->reslen += write(1, &data->arg_val[i], 1);
 		i++;
 	}
 	if (data->has_minus)
-		data->reslen += ft_putcharn(data->padding, data->width - end);
+		data->reslen += ft_putcharn(data->padding, len_padding);
 }
 
 void	ft_print_diuXxp(t_data *data)

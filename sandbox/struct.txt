@@ -1,0 +1,11 @@
+
+
+padding =         ' '
+has_minus =       0
+has_zero =        0
+width =           0
+precision =       -1
+pref =            '-'
+type value =      d
+arg value =       '789'
+result length =   4
