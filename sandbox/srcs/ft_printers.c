@@ -54,15 +54,15 @@ void	ft_print_cs(t_data *data)
 void	ft_print_diuXxp(t_data *data)
 {
 	int		len;
-	size_t len_zeros;
-	size_t len_padding;
-	size_t len_arg;
+	size_t	len_zeros;
+	size_t	len_padding;
+	size_t	len_arg;
 
 	len_padding = 0;
 	len_arg = ft_strlen(data->arg_val);
 	len = len_arg + ft_strlen(data->pref);
-	len_zeros = (data->prec == -1) ? 0 : (data->prec - len);
-	len_padding = (data->width >= len) ? data->width - (len_zeros + len) : 0;
+	len_zeros = (data->prec <= len) ? 0 : (data->prec - len);
+	len_padding = (data->width > len) ? data->width - (len_zeros + len) : 0;
 	data->reslen += len_padding;
 	if (!data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);

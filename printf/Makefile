@@ -43,7 +43,7 @@ re: fclean all
 ### UDOLI ###
 test: $(LIB)
 	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
-	./a.out > log.txt;
+	./a.out;
 
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
@@ -55,7 +55,3 @@ test-master:
 
 test-archive: all
 	$(CC) -I $(INCLUDES)  $(SANITIZE) -L. -lftprintf main.c
-
-test-printf:
-	$(CC) printf_main.c
-	./a.out

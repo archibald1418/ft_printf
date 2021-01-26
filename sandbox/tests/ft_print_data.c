@@ -1,5 +1,6 @@
-#include "tests.h"
 #include <fcntl.h>
+#include "../includes/ft_printf.h"
+#include <stdio.h>
 
 int		ft_is_data (t_data *data)
 {

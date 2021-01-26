@@ -13,7 +13,7 @@ void	set_diuXx (unsigned long num, t_data *data)
 	caps = 0;
 	if (num == 0 && data->prec == 0) //
 	{
-		data->arg_val = "";
+		data->arg_val = ft_strdup("");
 		return ;
 	}
 	if (data->type_val == 'x' || data->type_val == 'X')
@@ -52,12 +52,10 @@ void	set_s(char *s, t_data *data)
 	{
 		if (!(out = ft_strdup("(null)")))
 			data->arg_val = NULL;
-			return ;
 	}
-	if (!(out = ft_strdup(s)))
+	else if (!(out = ft_strdup(s)))
 	{
 		data->arg_val = NULL;
-		return ;
 	}
 	data->arg_val = out;
 }
