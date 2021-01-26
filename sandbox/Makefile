@@ -10,10 +10,10 @@ SRC			=	ft_utils.c\
 
 CC			=	gcc
 SOURCE		=	$(addprefix $(DIR), $(SRC))
-OBJ			=	${SOURCE.c:=.o}
+OBJ			=	${SOURCE:.c=.o}
 INCLUDES	=	./includes
-FLAGS		=	-Wall -Werror ### ADD -Wall -Werror -Wextra later
-LIB			=	libft/libft.a
+FLAGS		=	-Wall -Wextra ### ADD -Wall -Werror -Wextra later
+LIB			=	./libft/libft.a
 
 ### TESTS ###
 TESTSRC		= ft_print_data.c
@@ -25,11 +25,11 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
 	ar rc $(NAME) $?
 	ranlib $(NAME)
-%.o: %.c
+%.o: %.c $(INCLUDES)
 	${CC} $(FLAGS) -I $(INCLUDES) -c $< -o $@
 $(LIB):
-	make -C libft
-	cp $(LIB) $(NAME)
+	make -C ./libft
+	cp libft/libft.a libftprintf.a
 clean:
 	rm -f $(OBJ)
 	make clean -C libft
@@ -37,18 +37,12 @@ fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft
 re: fclean all
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 
 ### UDOLI ###
 test: $(LIB)
 	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
 	./a.out;
-	@# @chmod +r struct.txt
-	@# @chmod +r len.txt
-	@# @echo "Parsed:::"
-	@# @cat struct.txt
-	@# @echo "ft_printf returned:::"
-	@# @cat len.txt
 
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
@@ -57,3 +51,6 @@ test-struct:
 test-master:
 	$(CC) -g -I $(INCLUDES) master_main.c $(SOURCE) $(LIB)
 	./a.out
+
+test-archive: all
+	$(CC) -I $(INCLUDES) -L. -lftprintf main.c
