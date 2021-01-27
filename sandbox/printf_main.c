@@ -2,5 +2,5 @@
 
 int main ()
 {
-	printf("\nprintf returns %i\n", printf("%.x", 0));
+	printf("\nprintf returns %i\n", printf("%.10x", 19));
 }

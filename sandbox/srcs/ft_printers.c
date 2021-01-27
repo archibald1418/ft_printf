@@ -62,7 +62,7 @@ void	ft_print_diuXxp(t_data *data)
 	len_arg = ft_strlen(data->arg_val);
 	len = len_arg + ft_strlen(data->pref);
 	len_zeros = (data->prec <= len) ? 0 : (data->prec - len);
-	len_padding = (data->width > len) ? data->width - (len_zeros + len) : 0;
+	len_padding = (data->width > len) ? data->width - (len_zeros + len) : 0; // max(data->width, data->prec) -
 	data->reslen += len_padding;
 	if (!data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);

@@ -71,7 +71,11 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	}
 	data->prec = (arg < 0) ? -1 : arg; // "a negative precision is treated as though it were missing"
 	if (is_num_type(data->type_val))
-		cancel_zero(data);
+	{
+		if (data->prec >= data->width)
+			data->width = 0;
+		cancel_zero(data); // if prec > width, width equals to 0
+	}
 	return (index + ullen);
 }
 
