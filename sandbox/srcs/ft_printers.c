@@ -31,7 +31,7 @@ static void	init_lens (t_lens *lens, t_data *data)
 	lens->pref = ft_strlen(data->pref);
 	lens->arg = ft_strlen(data->arg_val);
 	lens->total = lens->pref + lens->arg;
-	lens->zeros = (data->prec > lens->total) ? data->prec - lens->total : 0;
+	lens->zeros = (data->prec > lens->total) ? data->prec - lens->arg : 0;
 	lens->padding = 0;
 	if (data->width > (lens->total + lens->zeros)) // calc with zeros
 		lens->padding = data->width  - (lens->zeros + lens->total);
@@ -45,19 +45,18 @@ void	ft_print_diuXxp(t_data *data)
 	init_lens(&lens, data);
 	if (data->has_minus)
 	{
-		data->reslen += ft_print_prefix(lens.pref);
+		data->reslen += ft_print_prefix(data);
 		data->reslen += ft_putcharn('0', lens.zeros);
 		data->reslen += ft_putstr_fd_(data->arg_val, 1);
 		data->reslen += ft_putcharn(data->padding, lens.padding);
-	} else if (data->has_zero)
-	{
-		data->reslen += ft_print_prefix(lens.pref);
-		data->reslen += ft_putcharn('0', lens.zeros);
-		data->reslen += ft_putstr_fd_(data->arg_val, 1);
+	} else if (data->has_zero) {
+		data->reslen += ft_print_prefix(data);
 		data->reslen += ft_putcharn(data->padding, lens.padding);
+		// data->reslen += ft_putcharn('0', lens.zeros);
+		data->reslen += ft_putstr_fd_(data->arg_val, 1);
 	} else {
 		data->reslen += ft_putcharn(data->padding, lens.padding);
-		data->reslen += ft_print_prefix(lens.pref);
+		data->reslen += ft_print_prefix(data);
 		data->reslen += ft_putcharn('0', lens.zeros);
 		data->reslen += ft_putstr_fd_(data->arg_val, 1);
 	}

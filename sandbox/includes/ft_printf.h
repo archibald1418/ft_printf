@@ -28,11 +28,11 @@ typedef struct s_data
 
 typedef struct	s_lens
 {
-	size_t pref;
-	size_t arg;
-	size_t zeros;
-	size_t padding;
-	size_t total;
+	int	pref;
+	int	arg;
+	int	zeros;
+	int	padding;
+	int	total;
 }				t_lens;
 
 // main func

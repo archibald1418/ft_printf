@@ -40,7 +40,7 @@ void	set_c(char c, t_data *data)
 	}
 	out[0] = c;
 	data->arg_val = out;
-	data->prec = -1;
+	data->prec = 1;
 }
 
 void	set_s(char *s, t_data *data)
@@ -61,16 +61,19 @@ void	set_s(char *s, t_data *data)
 
 void	set_p (unsigned long num, t_data *data)
 {
-	char *out;
-	if (!(out = ft_ultoa_base(num, 16, 0)))
+	if (num == 0 && data->prec == 0)
 	{
-		data->arg_val = NULL;
-		return ;
+		if (!(data->arg_val = ft_strdup("")))
+			return ;
+	}
+	else 
+	{
+		if (!(data->arg_val = ft_ultoa_base(num, 16, 0)))
+			return ;
 	}
 	ft_strlcpy(data->pref, "0x", 3);
-	data->arg_val = out;
-	if (data->prec > -1)
-		data->prec = 0; 
+	// if (data->prec > 0)
+	// 	data->prec = 0;
 }
 
 void	set_type(t_data *data, va_list *argptr)
