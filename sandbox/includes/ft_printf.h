@@ -16,6 +16,8 @@ typedef struct s_data
 	char	padding; // '', 0, -
 	int		has_minus;
 	int		has_zero;
+	int		has_dot;
+	int		is_neg;
 	int		width; // 0
 	int		prec; // 0 ->  
 	char	type_val;
@@ -51,10 +53,10 @@ char			get_type(char *fmt, size_t index);
 
 // parsers
 ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr);
+ssize_t			parse_type (t_data *data, va_list *argptr);
 size_t			parse_flags(char *fmt, size_t start, t_data *data);
 size_t			parse_width (t_data *data, va_list *argptr, size_t index, char *fmt);
 size_t			parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt);
-ssize_t			parse_type (t_data *data, va_list *argptr);
 
 // setters
 void			set_type(t_data *data, va_list *argptr);

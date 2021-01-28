@@ -6,8 +6,10 @@ void		init_parser(t_data *data)
 	data->padding = ' ';		// '', 0, -
 	data->has_minus = 0;
 	data->has_zero = 0;
+	data->is_neg = 0;
+	data->has_dot = 0;
 	data->width = 0;		// 0
-	data->prec = -1;			// 0 ->  
+	data->prec = 0;			// 0 ->  
 	data->pref = "";	// "", "-", "0x" -> 0x10???
 	data->type_val = '\0';
 	data->arg_val = "";	// 
@@ -60,6 +62,7 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	int arg;
 
 	data->prec = 0; // at this point we have a ".", which inits precision to 0"
+	data->has_dot = 1;
 	ullen = 1;
 	arg = 0;
 	if (fmt[index] == '*')
@@ -69,7 +72,8 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 		arg = ft_atoi(&fmt[index]); // thik of prec == -1 
 		ullen = ft_ullen(arg, 0);
 	}
-	data->prec = (arg < 0) ? -1 : arg; // "a negative precision is treated as though it were missing"
+	data->prec = arg; // "a negative precision is treated as though it were missing"
+	data->has_dot = (data->prec >= 0);
 	if (is_num_type(data->type_val))
 	{
 		if (data->prec >= data->width)
@@ -105,6 +109,7 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 
 	if (fmt[substr->start] == '.')
 	{	
+		data.has_dot = 1;
 		substr->start++;
 		substr->start = parse_precision(&data, argptr, substr->start, fmt);
 	}

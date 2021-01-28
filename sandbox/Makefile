@@ -14,9 +14,9 @@ OBJ			=	${SOURCE:.c=.o}
 INCLUDES	=	./includes
 FLAGS		=	-Wall -Wextra -Werror
 LIB			=	./libft/libft.a
-SANITIZE	= -fsanitize=address
 
 ### TESTS ###
+SANITIZE	= -fsanitize=address
 TESTSRC		= ft_print_data.c
 TESTFILE 	= main.c
 TESTDIR		= tests/
@@ -55,7 +55,8 @@ test-master:
 
 test-archive: all
 	$(CC) -I $(INCLUDES)  $(SANITIZE) -L. -lftprintf main.c
+	./a.out
 
 test-printf:
-	$(CC) printf_main.c
+	$(CC) -g printf_main.c -I $(INCLUDES) $(SOURCE) $(LIB)
 	./a.out

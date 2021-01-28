@@ -61,12 +61,18 @@ void	ft_print_diuXxp(t_data *data)
 	len_padding = 0;
 	len_arg = ft_strlen(data->arg_val);
 	len = len_arg + ft_strlen(data->pref);
-	len_zeros = (data->prec <= len) ? 0 : (data->prec - len);
+	// len_zeros = (data->prec >) ? len - data->prec : 0; //FIXME: 
 	len_padding = (data->width > len) ? data->width - (len_zeros + len) : 0; // max(data->width, data->prec) -
-	data->reslen += len_padding;
 	if (!data->has_minus)
+	{
+		data->reslen += ft_print_prefix(data);
 		data->reslen += ft_putcharn(data->padding, len_padding);
-	data->reslen += ft_print_prefix(data);
+	}
+	else
+	{
+		data->reslen += ft_putcharn(data->padding, len_padding);
+		data->reslen += ft_print_prefix(data);
+	}
 	data->reslen += ft_putcharn('0', len_zeros);
 	data->reslen += ft_putstr_fd_(data->arg_val, 1);
 	if (data->has_minus)

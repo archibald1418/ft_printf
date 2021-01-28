@@ -48,15 +48,14 @@ void	set_s(char *s, t_data *data)
 	char *out;
 
 	// cancel_zero(data); // string cancels zero flag
+	out = NULL;
 	if (s == NULL)
 	{
 		if (!(out = ft_strdup("(null)")))
 			data->arg_val = NULL;
 	}
 	else if (!(out = ft_strdup(s)))
-	{
 		data->arg_val = NULL;
-	}
 	data->arg_val = out;
 }
 
@@ -95,6 +94,7 @@ void	set_type(t_data *data, va_list *argptr)
 		}
 		else
 			num = va_arg(*argptr, unsigned long);
+		data->is_neg = (num < 0);
 		num = ft_abs(num);
 		set_diuXx(num, data);
 	}
