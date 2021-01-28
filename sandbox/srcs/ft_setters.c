@@ -67,7 +67,7 @@ void	set_p (unsigned long num, t_data *data)
 		data->arg_val = NULL;
 		return ;
 	}
-	data->pref = "0x";
+	ft_strlcpy(data->pref, "0x", 3);
 	data->arg_val = out;
 	if (data->prec > -1)
 		data->prec = 0; 
@@ -90,7 +90,7 @@ void	set_type(t_data *data, va_list *argptr)
 		if (IS_INT(data->type_val))
 		{
 			if ((num = va_arg(*argptr, int)) < 0)
-				data->pref = "-";
+				ft_strlcpy(data->pref, "-", 2);
 		}
 		else
 			num = va_arg(*argptr, unsigned long);
@@ -99,6 +99,3 @@ void	set_type(t_data *data, va_list *argptr)
 		set_diuXx(num, data);
 	}
 }
-
-
-

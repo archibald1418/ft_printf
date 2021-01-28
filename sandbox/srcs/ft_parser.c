@@ -10,9 +10,9 @@ void		init_parser(t_data *data)
 	data->has_dot = 0;
 	data->width = 0;		// 0
 	data->prec = 0;			// 0 ->  
-	data->pref = "";	// "", "-", "0x" -> 0x10???
+	data->pref[0] = '\0'; // fixed: writing to unallocced memory
 	data->type_val = '\0';
-	data->arg_val = "";	// 
+	data->arg_val = NULL;	// 
 	data->reslen = 0;		// 
 }
 
@@ -42,7 +42,7 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	} 
 	else if (ft_isdigit(fmt[index]))
 	{
-		data->width = ft_atoi(&fmt[index]); // TODO: test width == 0 if not present
+		data->width = ft_atoi(&fmt[index]);
 		ullen = ft_ullen(data->width, 0);
 	}
 	if (data->width < 0)

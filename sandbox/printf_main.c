@@ -4,6 +4,6 @@
 
 int main ()
 {
-	printf("\nprintf returns %i\n", printf("%.5d", -19));
-	printf("\nft_printf returns %i\n", ft_printf("%.5d", -19));
+	printf("\nprintf returns %i\n", printf("%5d", -19));
+	printf("\nft_printf returns %i\n", ft_printf("%5d", -19));
 }
