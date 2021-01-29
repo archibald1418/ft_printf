@@ -8,11 +8,14 @@ SRC			=	ft_utils.c\
 				ft_parser.c\
 				ft_parser_utils.c\
 				ft_setters.c
-
+INCLUDES	=	./includes
+DIRH		= 	includes/
+HFILES		=	ft_printf.h\
+				libft.h
+HEADERS		=	$(addprefix $(DIRH), $(HFILES))
 CC			=	gcc
 SOURCE		=	$(addprefix $(DIR), $(SRC))
 OBJ			=	${SOURCE:.c=.o}
-INCLUDES	=	./includes
 FLAGS		=	-Wall -Wextra -Werror
 LIB			=	./libft/libft.a
 
@@ -20,7 +23,8 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
 	ar rc $(NAME) $?
 	ranlib $(NAME)
-%.o: %.c $(INCLUDES)
+$(OBJ): $(HEADERS)
+%.o: %.c
 	${CC} $(FLAGS) -I $(INCLUDES) -c $< -o $@
 $(LIB):
 	make -C ./libft
