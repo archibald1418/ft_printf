@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 02:54:23 by ldonita           #+#    #+#             */
-/*   Updated: 2020/12/03 16:36:11 by ldonita          ###   ########.fr       */
+/*   Updated: 2020/11/21 19:05:24 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-void			*ft_memdup(const void *s, size_t size);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -62,14 +61,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-t_list			*ft_lstnew(void *content, size_t size);
+t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
-int				ft_lstsize(t_list *lst);
-t_list			*ft_lstlast(t_list *lst);
-void			ft_lstadd_back(t_list **lst, t_list *new);
-void			ft_lstdelone(t_list *lst, void (*del)(void*));
-void			ft_lstclear(t_list **lst, void (*del)(void*));
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));
 
 #endif

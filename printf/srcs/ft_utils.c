@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:02:00 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/29 19:02:01 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/29 19:58:24 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t			ft_strchri(char *fmt, int c, size_t i)
 	return (i);
 }
 
-size_t	ft_alphchri(char *fmt, size_t i)
+size_t			ft_alphchri(char *fmt, size_t i)
 {
 	while ((!ft_isalpha(fmt[i]) && fmt[i] != '%') && \
 	(fmt[i] != '\0' && !IS_SPACE(fmt[i])))
@@ -35,7 +35,7 @@ size_t	ft_alphchri(char *fmt, size_t i)
 size_t			ft_ullen(unsigned long n, size_t i)
 {
 	if (n == 0 && i == 0)
-		return (0); // width
+		return (0);
 	if (n == 0)
 		return (i);
 	return (ft_ullen(n / 10, i + 1));
@@ -46,4 +46,14 @@ unsigned long	ft_abs(long n)
 	if (n < 0)
 		return ((unsigned long)(n * (-1)));
 	return ((unsigned long)n);
+}
+
+int				ft_strnlen(char *s, size_t n)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i] != 0 && i < n)
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 00:15:22 by ldonita           #+#    #+#             */
-/*   Updated: 2020/11/26 20:55:02 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/29 19:38:34 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char			**free_arr(char **arr, size_t len)
 	size_t i;
 
 	i = 0;
-	while (i < len)
+	while (i <= len)
 	{
 		free(arr[i]);
 		i++;
@@ -67,9 +67,9 @@ static char			**fill_arr(char **arr, size_t len, char const *s, char sep)
 		leni = iter_chars(s, sep, flag);
 		if (flag == 0)
 		{
-			arr[i] = malloc((leni + 1) * sizeof(char)); 
+			arr[i] = malloc((leni + 1) * sizeof(char));
 			if (arr[i] == NULL)
-				return (free_arr(arr, i));
+				return (free_arr(arr, i + 1));
 			ft_strlcpy(arr[i], s, leni + 1);
 			i++;
 		}

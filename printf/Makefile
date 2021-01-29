@@ -16,13 +16,6 @@ INCLUDES	=	./includes
 FLAGS		=	-Wall -Wextra -Werror
 LIB			=	./libft/libft.a
 
-### TESTS ###
-SANITIZE	= -fsanitize=address
-TESTSRC		= ft_print_data.c
-TESTFILE 	= main.c
-TESTDIR		= tests/
-TESTSOURCE	= $(addprefix $(TESTDIR), $(TESTSRC))
-
 all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
 	ar rc $(NAME) $?
@@ -40,28 +33,3 @@ fclean: clean
 	make fclean -C libft
 re: fclean all
 .PHONY: all clean fclean re
-
-### UDOLI ###
-test: $(LIB)
-	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
-	./a.out > log.txt;
-	make clean
-
-test-struct:
-	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
-	./a.out
-	make clean
-
-test-master: all
-	$(CC) -g -I $(INCLUDES) $(SANITIZE) main.c $(SOURCE) $(LIB)
-	./a.out
-	make clean
-
-test-archive: all
-	$(CC) -I $(INCLUDES)  $(SANITIZE) -L. -lftprintf main.c
-	./a.out
-	make clean
-
-test-printf: re
-	$(CC) -g printf_main.c -I $(INCLUDES) $(SOURCE) $(LIB)
-	./a.out

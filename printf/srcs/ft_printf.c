@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:01:12 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/29 19:01:13 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/29 19:58:56 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	handle_errors(va_list *argptr)
 	return (-1);
 }
 
-int	ft_printf(char *fmt, ...)
+int			ft_printf(char *fmt, ...)
 {
 	va_list		args;
 	t_substr	substr;
 	size_t		total;
 	int			out;
-	
+
 	va_start(args, fmt);
 	total = 0;
 	ft_substr_init(&substr);

@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 00:13:21 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/23 08:56:42 by ldonita          ###   ########.fr       */
+/*   Updated: 2020/11/21 12:17:05 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ int				ft_atoi(const char *str)
 		return (-1);
 	if (num > INT_MAX)
 		return (1);
-	return ((int)num); 
+	return ((int)num);
 }

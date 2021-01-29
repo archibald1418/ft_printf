@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:01:23 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/29 19:02:10 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/29 19:56:40 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define ALPHABET "0123456789abcdef"
 #define IS_LOWER(c) (97 <= (c) && (c) <= 122)
 
-static void			fill_digits(unsigned long n, char *str, int base, size_t caps) 
+static void			fill_digits(unsigned long n, char *str, int base, int caps)
 {
 	if (n >= (unsigned long)base)
 	{
@@ -34,9 +34,8 @@ static size_t		count_digits(unsigned long n, size_t i, int base)
 	return (count_digits(n / base, i + 1, base));
 }
 
-char				*ft_ultoa_base(unsigned long n, int base, size_t caps)
+char				*ft_ultoa_base(unsigned long n, int base, int caps)
 {
-
 	size_t			ndigits;
 	char			*out;
 

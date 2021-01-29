@@ -6,7 +6,7 @@
 /*   By: ldonita <ldonita@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:01:18 by ldonita           #+#    #+#             */
-/*   Updated: 2021/01/29 19:01:19 by ldonita          ###   ########.fr       */
+/*   Updated: 2021/01/29 20:04:56 by ldonita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #define IS_UINT(t) ((t) =='x' | (t) == 'X' || (t) == 'u')
 #define IS_INT(t) ((t) == 'd' | (t) == 'i')
 
-void	set_diuXx (unsigned long num, t_data *data)
+void	set_diuxx(unsigned long num, t_data *data)
 {
-	char *out;
-	int base;
-	int caps;
+	char	*out;
+	int		base;
+	int		caps;
 
 	base = 10;
 	caps = 0;
-	if (num == 0 && data->has_dot && data->prec == 0) //
+	if (num == 0 && data->has_dot && data->prec == 0)
 	{
 		data->arg_val = ft_strdup("");
 		return ;
@@ -51,8 +51,6 @@ void	set_c(char c, t_data *data)
 		return ;
 	}
 	out[0] = c;
-	if (c == 0)
-		
 	if (data->width != 0)
 		data->width -= (c == 0);
 	data->arg_val = out;
@@ -74,14 +72,14 @@ void	set_s(char *s, t_data *data)
 	data->arg_val = out;
 }
 
-void	set_p (unsigned long num, t_data *data)
+void	set_p(unsigned long num, t_data *data)
 {
 	if (num == 0 && data->has_dot && data->prec == 0)
 	{
 		if (!(data->arg_val = ft_strdup("")))
 			return ;
 	}
-	else 
+	else
 	{
 		if (!(data->arg_val = ft_ultoa_base(num, 16, 0)))
 			return ;
@@ -102,16 +100,17 @@ void	set_type(t_data *data, va_list *argptr)
 		set_s(va_arg(*argptr, char *), data);
 	else if (data->type_val == '%')
 		set_c('%', data);
-	else {
+	else
+	{
 		if (IS_INT(data->type_val))
 		{
 			if ((num = va_arg(*argptr, int)) < 0)
 				ft_strlcpy(data->pref, "-", 2);
 		}
 		else
-			num = (unsigned long) va_arg(*argptr, unsigned int);
+			num = (unsigned long)va_arg(*argptr, unsigned int);
 		data->is_neg = (num < 0);
 		num = ft_abs(num);
-		set_diuXx(num, data);
+		set_diuxx(num, data);
 	}
 }
