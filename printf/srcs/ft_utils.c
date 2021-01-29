@@ -20,12 +20,6 @@ size_t	ft_alphchri(char *fmt, size_t i)
 	return (i);
 }
 
-int	ft_substr_clear(char *substr)
-{
-	free(substr);
-	return (-1);
-}
-
 size_t			ft_ullen(unsigned long n, size_t i)
 {
 	if (n == 0 && i == 0)
