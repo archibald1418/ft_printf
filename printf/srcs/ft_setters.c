@@ -11,9 +11,9 @@ void	set_diuXx (unsigned long num, t_data *data)
 
 	base = 10;
 	caps = 0;
-	if (num == 0 && data->prec == 0) //
+	if (num == 0 && data->has_dot && data->prec == 0) //
 	{
-		data->arg_val = "";
+		data->arg_val = ft_strdup("");
 		return ;
 	}
 	if (data->type_val == 'x' || data->type_val == 'X')
@@ -39,41 +39,42 @@ void	set_c(char c, t_data *data)
 		return ;
 	}
 	out[0] = c;
+	if (c == 0)
+		
+	if (data->width != 0)
+		data->width -= (c == 0);
 	data->arg_val = out;
-	data->prec = -1;
+	data->prec = 1;
 }
 
 void	set_s(char *s, t_data *data)
 {
 	char *out;
 
-	// cancel_zero(data); // string cancels zero flag
+	out = NULL;
 	if (s == NULL)
 	{
 		if (!(out = ft_strdup("(null)")))
 			data->arg_val = NULL;
-			return ;
 	}
-	if (!(out = ft_strdup(s)))
-	{
+	else if (!(out = ft_strdup(s)))
 		data->arg_val = NULL;
-		return ;
-	}
 	data->arg_val = out;
 }
 
 void	set_p (unsigned long num, t_data *data)
 {
-	char *out;
-	if (!(out = ft_ultoa_base(num, 16, 0)))
+	if (num == 0 && data->has_dot && data->prec == 0)
 	{
-		data->arg_val = NULL;
-		return ;
+		if (!(data->arg_val = ft_strdup("")))
+			return ;
 	}
-	data->pref = "0x";
-	data->arg_val = out;
-	if (data->prec > -1)
-		data->prec = 0; 
+	else 
+	{
+		if (!(data->arg_val = ft_ultoa_base(num, 16, 0)))
+			return ;
+	}
+	ft_strlcpy(data->pref, "0x", 3);
 }
 
 void	set_type(t_data *data, va_list *argptr)
@@ -93,14 +94,12 @@ void	set_type(t_data *data, va_list *argptr)
 		if (IS_INT(data->type_val))
 		{
 			if ((num = va_arg(*argptr, int)) < 0)
-				data->pref = "-";
+				ft_strlcpy(data->pref, "-", 2);
 		}
 		else
-			num = va_arg(*argptr, unsigned long);
+			num = (unsigned long) va_arg(*argptr, unsigned int);
+		data->is_neg = (num < 0);
 		num = ft_abs(num);
 		set_diuXx(num, data);
 	}
 }
-
-
-

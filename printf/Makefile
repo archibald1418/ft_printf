@@ -2,6 +2,7 @@ NAME		= 	libftprintf.a
 DIR			=	srcs/
 SRC			=	ft_utils.c\
 				ft_printers.c\
+				ft_printers_utils.c\
 				ft_printf.c\
 				ft_ultoa_base.c\
 				ft_parser.c\
@@ -14,9 +15,9 @@ OBJ			=	${SOURCE:.c=.o}
 INCLUDES	=	./includes
 FLAGS		=	-Wall -Wextra -Werror
 LIB			=	./libft/libft.a
-SANITIZE	= -fsanitize=address
 
 ### TESTS ###
+SANITIZE	= -fsanitize=address
 TESTSRC		= ft_print_data.c
 TESTFILE 	= main.c
 TESTDIR		= tests/
@@ -43,15 +44,24 @@ re: fclean all
 ### UDOLI ###
 test: $(LIB)
 	$(CC) -g -I $(INCLUDES) $(SOURCE) main.c libft/*.c tests/$(TESTSRC)
-	./a.out;
+	./a.out > log.txt;
+	make clean
 
 test-struct:
 	$(CC) -g -I $(INCLUDES) $(TESTDIR)/ft_print_data.c main.c $(SOURCE) $(LIB)
 	./a.out
+	make clean
 
-test-master:
-	$(CC) -g -I $(INCLUDES) master_main.c $(SOURCE) $(LIB)
+test-master: all
+	$(CC) -g -I $(INCLUDES) $(SANITIZE) main.c $(SOURCE) $(LIB)
 	./a.out
+	make clean
 
 test-archive: all
 	$(CC) -I $(INCLUDES)  $(SANITIZE) -L. -lftprintf main.c
+	./a.out
+	make clean
+
+test-printf: re
+	$(CC) -g printf_main.c -I $(INCLUDES) $(SOURCE) $(LIB)
+	./a.out

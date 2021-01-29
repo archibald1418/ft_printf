@@ -1,34 +1,20 @@
 #include "ft_printf.h"
 
-int		ft_putchar_fd_(char c, int fd)
-{
-	return (write(fd, &c, 1));
-}
-
-int		ft_putstr_fd_(char *s, int fd)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i += ft_putchar_fd_(s[i], fd);
-	return (i);
-}
-
-int		ft_putcharn (char c, size_t n)
-{
-	int total;
-
-	total = 0;
-	while (n--)
-		total += ft_putchar_fd_(c, 1);
-	return (total);
-}
-
 int		ft_print_prefix(t_data *data)
 {
 	return(write(1, data->pref, ft_strlen(data->pref)));
 }
+
+static int	ft_strnlen(char *s, size_t n)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i] != 0 && i < n)
+		i++;
+	return (i);
+}
+
 void	ft_print_cs(t_data *data)
 {
 	int		i;
@@ -38,39 +24,59 @@ void	ft_print_cs(t_data *data)
 
 	i = 0;
 	total = 0;
-	end = (data->prec == -1) ? ft_strlen(data->arg_val) : data->prec;
+	end = 0;
+	if (data->has_dot)
+		end = ft_strnlen(data->arg_val, data->prec);
+	else 
+		end = ft_strlen(data->arg_val);
 	len_padding = (data->width >= end) ? data->width - end : 0;
 	if (!data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);
-	while (i < end)
-	{
-		data->reslen += write(1, &data->arg_val[i], 1);
-		i++;
-	}
+	if (data->type_val == 'c')
+		data->reslen += write(1, &data->arg_val[0], 1);
+	else 
+		while (i < end)
+		{
+			data->reslen += write(1, &data->arg_val[i], 1);
+			i++;
+		}
 	if (data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);
 }
 
+static void	init_lens (t_lens *lens, t_data *data)
+{
+	lens->pref = ft_strlen(data->pref);
+	lens->arg = ft_strlen(data->arg_val);
+	lens->total = lens->pref + lens->arg;
+	lens->zeros = (data->prec > lens->arg) ? data->prec - lens->arg: 0;
+	lens->padding = 0;
+	if (data->width > (lens->total + lens->zeros))
+		lens->padding = data->width  - (lens->zeros + lens->total);
+}
+
 void	ft_print_diuXxp(t_data *data)
 {
-	int		len;
-	size_t len_zeros;
-	size_t len_padding;
-	size_t len_arg;
+	t_lens lens;
 
-	len_padding = 0;
-	len_arg = ft_strlen(data->arg_val);
-	len = len_arg + ft_strlen(data->pref);
-	len_zeros = (data->prec == -1) ? 0 : (data->prec - len);
-	len_padding = (data->width >= len) ? data->width - (len_zeros + len) : 0;
-	data->reslen += len_padding;
-	if (!data->has_minus)
-		data->reslen += ft_putcharn(data->padding, len_padding);
-	data->reslen += ft_print_prefix(data);
-	data->reslen += ft_putcharn('0', len_zeros);
-	data->reslen += ft_putstr_fd_(data->arg_val, 1);
+	init_lens(&lens, data);
 	if (data->has_minus)
-		data->reslen += ft_putcharn(data->padding, len_padding);
+	{
+		data->reslen += ft_print_prefix(data);
+		data->reslen += ft_putcharn('0', lens.zeros);
+		data->reslen += ft_putstr_fd_(data->arg_val, 1);
+		data->reslen += ft_putcharn(data->padding, lens.padding);
+	} else if (data->has_zero) {
+		data->reslen += ft_print_prefix(data);
+		data->reslen += ft_putcharn(data->padding, lens.padding);
+		data->reslen += ft_putstr_fd_(data->arg_val, 1);
+	} else {
+		data->reslen += ft_putcharn(data->padding, lens.padding);
+		data->reslen += ft_print_prefix(data);
+		data->reslen += ft_putcharn('0', lens.zeros);
+		data->reslen += ft_putstr_fd_(data->arg_val, 1);
+	}
+
 }
 
 void	ft_print(t_data *data)

@@ -23,14 +23,15 @@ static size_t		count_digits(unsigned long n, size_t i, int base)
 	return (count_digits(n / base, i + 1, base));
 }
 
-char				*ft_ultoa_base(unsigned long n, int base, size_t caps) // original printf overflows because of such exact typing
+char				*ft_ultoa_base(unsigned long n, int base, size_t caps)
 {
 
 	size_t			ndigits;
 	char			*out;
 
 	ndigits = count_digits(n, 0, base);
-	out = ft_calloc(21, sizeof(char));
+	if (!(out = ft_calloc(21, sizeof(char))))
+		return (NULL);
 	fill_digits(n, out + ndigits - 1, base, caps);
 	return (out);
 }

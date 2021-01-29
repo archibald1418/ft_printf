@@ -23,5 +23,5 @@ char	get_type(char *fmt, size_t index)
 			return (TYPES[i]);
 		i++;
 	}
-	return ('\0'); // unknown type
+	return ('\0');
 }

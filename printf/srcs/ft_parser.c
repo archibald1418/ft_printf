@@ -3,15 +3,17 @@
 
 void		init_parser(t_data *data)
 {
-	data->padding = ' ';		// '', 0, -
+	data->padding = ' ';
 	data->has_minus = 0;
 	data->has_zero = 0;
-	data->width = 0;		// 0
-	data->prec = -1;			// 0 ->  
-	data->pref = "";	// "", "-", "0x" -> 0x10???
+	data->is_neg = 0;
+	data->has_dot = 0;
+	data->width = 0;		
+	data->prec = 0;			
+	data->pref[0] = '\0'; 
 	data->type_val = '\0';
-	data->arg_val = "";	// 
-	data->reslen = 0;		// 
+	data->arg_val = NULL;
+	data->reslen = 0;	
 }
 
 size_t	parse_flags(char *fmt, size_t start, t_data *data)
@@ -40,7 +42,7 @@ size_t		parse_width (t_data *data, va_list *argptr, size_t index, char *fmt)
 	} 
 	else if (ft_isdigit(fmt[index]))
 	{
-		data->width = ft_atoi(&fmt[index]); // TODO: test width == 0 if not present
+		data->width = ft_atoi(&fmt[index]);
 		ullen = ft_ullen(data->width, 0);
 	}
 	if (data->width < 0)
@@ -59,26 +61,31 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	size_t ullen;
 	int arg;
 
-	data->prec = 0; // at this point we have a ".", which inits precision to 0"
+	data->prec = 0;
+	data->has_dot = 1;
 	ullen = 1;
 	arg = 0;
 	if (fmt[index] == '*')
 	{
 		arg = va_arg(*argptr, int);
 	} else if (ft_isdigit(fmt[index])){
-		arg = ft_atoi(&fmt[index]); // thik of prec == -1 
+		arg = ft_atoi(&fmt[index]); 
 		ullen = ft_ullen(arg, 0);
 	}
-	data->prec = (arg < 0) ? -1 : arg; // "a negative precision is treated as though it were missing"
+	data->prec = arg;
+	data->has_dot = (data->prec >= 0);
 	if (is_num_type(data->type_val))
-		cancel_zero(data);
+	{
+		if (data->prec >= data->width)
+			data->width = 0;
+	}
 	return (index + ullen);
 }
 
 ssize_t		parse_type (t_data *data, va_list *argptr)
 {
 	set_type(data, argptr);
-	if (data->arg_val == NULL) // means a malloc error 
+	if (data->arg_val == NULL)
 		return (-1);
 	return (1);
 }
@@ -91,26 +98,26 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 	reslen = 0;
 	init_parser(&data);
 	if ((data.type_val = get_type(fmt, substr->end)) == '\0')
-		return (-1); // TODO: maybe write pattern as plain chars if bad specifier
+		return (-1);
 	substr->start++;
-	// ft_print_data(&data);
 	substr->start = parse_flags(fmt, substr->start, &data);
-	// ft_print_data(&data);
 	substr->start = parse_width(&data, argptr, substr->start, fmt);
-	// ft_print_data(&data);
 
 	if (fmt[substr->start] == '.')
 	{	
+		data.has_dot = 1;
 		substr->start++;
 		substr->start = parse_precision(&data, argptr, substr->start, fmt);
+		if (is_num_type(data.type_val) && data.has_dot)
+			cancel_zero(&data);
+		else if (is_num_type(data.type_val) && !data.has_dot)
+			data.prec = 1;
 	}
-	// ft_print_data(&data);
-	parse_type(&data, argptr);
-	// ft_print_data(&data);
+	if (!(parse_type(&data, argptr)))
+		return (-1);
 	if (data.arg_val == NULL)
 		return (-1);
 	ft_print(&data);
-	// ft_print_data(&data);
 	free(data.arg_val);
-	return (data.reslen); // TODO: count write
+	return (data.reslen);
 }
