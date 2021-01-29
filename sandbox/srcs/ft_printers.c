@@ -49,7 +49,7 @@ static void	init_lens (t_lens *lens, t_data *data)
 	lens->pref = ft_strlen(data->pref);
 	lens->arg = ft_strlen(data->arg_val);
 	lens->total = lens->pref + lens->arg;
-	lens->zeros = (data->prec > lens->total) ? data->prec - lens->arg : 0;
+	lens->zeros = (data->prec > lens->arg) ? data->prec - lens->arg: 0; // lens->arg -> lens->total
 	lens->padding = 0;
 	if (data->width > (lens->total + lens->zeros)) // calc with zeros
 		lens->padding = data->width  - (lens->zeros + lens->total);
