@@ -52,8 +52,8 @@ test-struct:
 	./a.out
 	make clean
 
-test-master:
-	$(CC) -g -I $(INCLUDES) master_main.c $(SOURCE) $(LIB)
+test-master: all
+	$(CC) -g -I $(INCLUDES) $(SANITIZE) main.c $(SOURCE) $(LIB)
 	./a.out
 	make clean
 
@@ -62,6 +62,6 @@ test-archive: all
 	./a.out
 	make clean
 
-test-printf:
+test-printf: re
 	$(CC) -g printf_main.c -I $(INCLUDES) $(SOURCE) $(LIB)
 	./a.out

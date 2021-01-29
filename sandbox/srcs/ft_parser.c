@@ -78,7 +78,7 @@ size_t		parse_precision (t_data *data, va_list *argptr, size_t index, char *fmt)
 	{
 		if (data->prec >= data->width)
 			data->width = 0;
-		cancel_zero(data); // if prec > width, width equals to 0
+		// if (data->prec != 1) // 
 	}
 	return (index + ullen);
 }
@@ -112,6 +112,10 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 		data.has_dot = 1;
 		substr->start++;
 		substr->start = parse_precision(&data, argptr, substr->start, fmt);
+		if (is_num_type(data.type_val) && data.has_dot)
+			cancel_zero(&data); // if prec > width, width equals to 0
+		else if (is_num_type(data.type_val) && !data.has_dot)
+			data.prec = 1;
 	}
 	// ft_print_data(&data);
 	if (!(parse_type(&data, argptr)))

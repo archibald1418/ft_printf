@@ -100,7 +100,7 @@ void	set_type(t_data *data, va_list *argptr)
 				ft_strlcpy(data->pref, "-", 2);
 		}
 		else
-			num = va_arg(*argptr, unsigned long);
+			num = (unsigned long) va_arg(*argptr, unsigned int);
 		data->is_neg = (num < 0);
 		num = ft_abs(num);
 		set_diuXx(num, data);
