@@ -4,6 +4,9 @@
 
 int main ()
 {
-	printf("\nprintf returns %i\n", printf("|%d|", 0));
-	printf("\nft_printf returns %i\n", ft_printf("|%d|", 0));
+	printf("\nprintf returns %i\n", printf("|%.7s|\n", "h"));
+	printf("\nft_printf returns %i\n", ft_printf("|%.7s|\n", "h"));
+
+	// int c = 0;
+	// printf("%s", write(1, &c, ));
 }

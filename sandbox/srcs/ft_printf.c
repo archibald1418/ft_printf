@@ -6,6 +6,12 @@ static void	ft_substr_init(t_substr *substr)
 	substr->end = 0;
 }
 
+static int	handle_errors(va_list *argptr)
+{
+	va_end(*argptr);
+	return (-1);
+}
+
 int	ft_printf(char *fmt, ...)
 {
 	va_list		args;
@@ -14,7 +20,6 @@ int	ft_printf(char *fmt, ...)
 	int			out;
 	
 	va_start(args, fmt);
-
 	total = 0;
 	ft_substr_init(&substr);
 	while (fmt[substr.end] != '\0')
@@ -26,7 +31,7 @@ int	ft_printf(char *fmt, ...)
 			return (total);
 		substr.end = ft_alphchri(fmt, substr.start + 1);
 		if ((out = ft_parser(fmt, &substr, &args)) == -1)
-			return (-1);
+			return (handle_errors(&args));
 		total += out;
 		substr.start = (substr.end += 1);
 	}

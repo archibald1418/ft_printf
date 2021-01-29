@@ -39,6 +39,10 @@ void	set_c(char c, t_data *data)
 		return ;
 	}
 	out[0] = c;
+	if (c == 0)
+		
+	if (data->width != 0)
+		data->width -= (c == 0); //width ignores it
 	data->arg_val = out;
 	data->prec = 1;
 }

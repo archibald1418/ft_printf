@@ -114,7 +114,8 @@ ssize_t			ft_parser(char *fmt, t_substr *substr, va_list *argptr)
 		substr->start = parse_precision(&data, argptr, substr->start, fmt);
 	}
 	// ft_print_data(&data);
-	parse_type(&data, argptr);
+	if (!(parse_type(&data, argptr)))
+		return (-1);
 	// ft_print_data(&data);
 	if (data.arg_val == NULL)
 		return (-1);

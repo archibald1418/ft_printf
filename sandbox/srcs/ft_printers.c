@@ -4,6 +4,17 @@ int		ft_print_prefix(t_data *data)
 {
 	return(write(1, data->pref, ft_strlen(data->pref)));
 }
+
+static int	ft_strnlen(char *s, size_t n)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i] != 0 && i < n)
+		i++;
+	return (i);
+}
+
 void	ft_print_cs(t_data *data)
 {
 	int		i;
@@ -13,15 +24,22 @@ void	ft_print_cs(t_data *data)
 
 	i = 0;
 	total = 0;
-	end = (!data->has_dot) ? ft_strlen(data->arg_val) : data->prec;
+	end = 0;
+	if (data->has_dot)
+		end = ft_strnlen(data->arg_val, data->prec);
+	else 
+		end = ft_strlen(data->arg_val);
 	len_padding = (data->width >= end) ? data->width - end : 0;
 	if (!data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);
-	while (i < end)
-	{
-		data->reslen += write(1, &data->arg_val[i], 1);
-		i++;
-	}
+	if (data->type_val == 'c')
+		data->reslen += write(1, &data->arg_val[0], 1);
+	else 
+		while (i < end)
+		{
+			data->reslen += write(1, &data->arg_val[i], 1);
+			i++;
+		}
 	if (data->has_minus)
 		data->reslen += ft_putcharn(data->padding, len_padding);
 }
@@ -61,29 +79,6 @@ void	ft_print_diuXxp(t_data *data)
 		data->reslen += ft_putstr_fd_(data->arg_val, 1);
 	}
 
-	// l_pref = ft_strlen(data->pref);
-	// len_arg = ft_strlen(data->arg_val);
-	// len = len_arg + l_pref;
-	// len_zeros = (data->prec > len) ? data->prec - len + l_pref : 0;
-	// len_padding = (data->width > len) ? data->width - (len_zeros + len) : 0;
-	// if (!data->has_minus)
-	// {
-	// 	if (data->is_neg)
-	// 	{
-	// 		data->reslen += ft_print_prefix(data);
-	// 		data->reslen += ft_putcharn(data->padding, len_padding);
-	// 	}
-		
-	// }
-	// else if (data->has_minus)
-	// {
-	// 	data->reslen += ft_putcharn(data->padding, len_padding);
-	// 	data->reslen += ft_print_prefix(data);
-	// }
-	// data->reslen += ft_putcharn('0', len_zeros);
-	// data->reslen += ft_putstr_fd_(data->arg_val, 1);
-	// if (data->has_minus)
-	// 	data->reslen += ft_putcharn(data->padding, len_padding);
 }
 
 void	ft_print(t_data *data)
