@@ -12,4 +12,6 @@ This is a replicated version of FreeBSD's printf function from stdio.h
   
   -0
 
-To build the project run ```make```
+To build the project 
+* run ```cd printf```
+* run ```make```
