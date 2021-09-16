@@ -35,5 +35,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft
+test: $(NAME)
+	gcc main.c $(NAME)
+	./a.out
 re: fclean all
 .PHONY: all clean fclean re
