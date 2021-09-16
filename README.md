@@ -15,3 +15,4 @@ This is a replicated version of FreeBSD's printf function from stdio.h
 To build the project 
 * run ```cd printf```
 * run ```make```
+* run test with ```make test```. You can add new test to the file if needed
