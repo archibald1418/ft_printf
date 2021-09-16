@@ -16,4 +16,4 @@ Use ```man printf``` for reference
 To build the project 
 * run ```cd printf```
 * run ```make```
-* run test with ```make test```. You can add new test to the file if needed
+* run test with ```make test```. You can add new tests to the file if needed
