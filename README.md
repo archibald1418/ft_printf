@@ -4,6 +4,7 @@ ft_printf project for 42
 ## Description
 
 This is a replicated version of FreeBSD's printf function from stdio.h
+Use ```man printf``` for reference
 
 #### type specifiers 
 
