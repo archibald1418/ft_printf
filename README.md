@@ -5,7 +5,11 @@ ft_printf project for 42
 
 This is a replicated version of FreeBSD's printf function from stdio.h
 
-#### %diuscXxp% type specifiers 
-#### -0 flags
+#### type specifiers 
+
+  %diuscXxp%
+#### flags
+  
+  -0
 
 To build the project run ```make```
