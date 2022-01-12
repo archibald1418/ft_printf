@@ -12,6 +12,7 @@ Use ```man printf``` for reference
 #### flags
   
   -0
+#### '*' argument list expansions
 
 To build the project 
 * run ```cd printf```
